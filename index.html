@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>KIARICE | پخش برنج کیارایس</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<style>
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfont/woff2/Vazirmatn-Regular.woff2') format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfont/woff2/Vazirmatn-Medium.woff2') format('woff2');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfont/woff2/Vazirmatn-Bold.woff2') format('woff2');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfont/woff2/Vazirmatn-Black.woff2') format('woff2');
+  font-weight: 900;
+}
+
+:root{
+  --bg: #0b0b0c;
+  --bg2: #131315;
+  --card: #17171a;
+  --card2: #1d1d20;
+  --gold: #cda349;
+  --gold-bright: #e8c477;
+  --gold-dim: #8a723a;
+  --text: #f3ede0;
+  --text-dim: #a9a297;
+  --border: #2a2a2d;
+  --green: #4caf7d;
+  --red: #d16b6b;
+  --blue: #6b9bd1;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Vazirmatn',Tahoma,sans-serif;}
+body{min-height:100vh; overscroll-behavior-y: none;}
+#root{max-width:520px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;padding-bottom:78px;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:10px;}
+
+.bg-pattern{
+  background-image: radial-gradient(circle at 20% 10%, rgba(205,163,73,0.06), transparent 40%), radial-gradient(circle at 90% 80%, rgba(205,163,73,0.05), transparent 40%);
+}
+
+a, button, input, select, textarea { font-family: inherit; }
+button{cursor:pointer;}
+input,select,textarea{
+  background:var(--card2); border:1px solid var(--border); color:var(--text);
+  border-radius:10px; padding:12px 14px; font-size:15px; width:100%; outline:none;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--gold-dim);}
+input::placeholder,textarea::placeholder{color:#6b6a63;}
+label{font-size:13px;color:var(--text-dim);margin-bottom:6px;display:block;}
+.field{margin-bottom:14px;}
+
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(135deg,var(--gold-bright),var(--gold));
+  color:#151007; font-weight:700; border:none; border-radius:12px; padding:14px;
+  font-size:15px; width:100%; box-shadow: 0 4px 20px rgba(205,163,73,0.18);
+  transition: transform .15s ease, opacity .15s ease;
+}
+.btn:active{transform:scale(0.97);}
+.btn.secondary{
+  background:transparent; color:var(--gold); border:1px solid var(--gold-dim); box-shadow:none;
+}
+.btn.danger{background:linear-gradient(135deg,#e07a7a,#b64f4f); color:#fff; box-shadow:none;}
+.btn.small{padding:9px 14px;font-size:13px;border-radius:9px;width:auto;}
+.btn:disabled{opacity:0.5;}
+
+.card{
+  background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; margin-bottom:14px;
+}
+.card.tight{padding:12px;}
+.chip{
+  display:inline-flex;align-items:center;gap:4px;background:var(--card2);border:1px solid var(--border);
+  color:var(--text-dim); font-size:12px; padding:4px 10px; border-radius:20px;
+}
+.chip.gold{color:var(--gold-bright);border-color:var(--gold-dim);}
+.chip.green{color:var(--green);border-color:#2b4f3c;}
+.chip.red{color:var(--red);border-color:#4f2b2b;}
+
+.section-title{font-size:14px;color:var(--gold-bright);font-weight:700;margin:22px 0 10px;display:flex;align-items:center;gap:8px;}
+.section-title .line{flex:1;height:1px;background:linear-gradient(to left,var(--border),transparent);}
+
+.header{
+  position:sticky; top:0; z-index:20; background:rgba(11,11,12,0.92); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border); padding:14px 18px; display:flex; align-items:center; justify-content:space-between;
+}
+.header h1{font-size:16px;margin:0;color:var(--gold-bright);font-weight:700;}
+.header .sub{font-size:11px;color:var(--text-dim);}
+
+.tabbar{
+  position:fixed; bottom:0; left:50%; transform:translateX(-50%); width:100%; max-width:520px;
+  background:rgba(19,19,21,0.97); backdrop-filter:blur(10px); border-top:1px solid var(--border);
+  display:flex; z-index:30; padding:6px 4px calc(6px + env(safe-area-inset-bottom));
+}
+.tabbar button{
+  flex:1; background:none; border:none; color:var(--text-dim); display:flex; flex-direction:column; align-items:center;
+  gap:3px; font-size:10px; padding:6px 2px; border-radius:10px;
+}
+.tabbar button.active{color:var(--gold-bright);}
+.tabbar svg{width:20px;height:20px;}
+
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;}
+.stat-box .num{font-size:20px;font-weight:800;color:var(--gold-bright);}
+.stat-box .label{font-size:11px;color:var(--text-dim);margin-top:4px;}
+
+.row{display:flex;align-items:center;justify-content:space-between;}
+.row.gap{gap:10px;}
+
+.product-card{
+  background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; margin-bottom:14px;
+}
+.product-card img{width:100%;height:170px;object-fit:cover;display:block;background:var(--card2);}
+.product-card .noimg{width:100%;height:120px;display:flex;align-items:center;justify-content:center;color:#5c584e;font-size:12px;background:repeating-linear-gradient(45deg,#161618,#161618 10px,#19191c 10px,#19191c 20px);}
+.product-card .body{padding:14px;}
+.product-card .name{font-size:16px;font-weight:800;color:var(--text);}
+.product-card .origin{font-size:12px;color:var(--gold-dim);margin-top:2px;}
+.spec-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px;}
+.spec-table td{padding:6px 4px;border-bottom:1px solid var(--border);color:var(--text-dim);}
+.spec-table td:first-child{color:var(--text);text-align:left;font-weight:600;}
+.dots{letter-spacing:2px;color:var(--gold);}
+.dots .off{color:#3a3934;}
+.price-box{display:flex;justify-content:space-between;background:var(--card2);border-radius:10px;padding:10px 12px;margin-top:10px;}
+.price-box .p{text-align:center;}
+.price-box .p .v{font-weight:800;font-size:14px;color:var(--text);}
+.price-box .p.coop .v{color:var(--gold-bright);}
+.price-box .p .l{font-size:10px;color:var(--text-dim);margin-top:2px;}
+.pitch{background:rgba(205,163,73,0.08); border-right:3px solid var(--gold); border-radius:8px; padding:10px 12px; margin-top:10px; font-size:12.5px; color:#d9cdae; line-height:1.9;}
+
+.login-wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 26px;}
+.login-logo{width:130px;height:auto;margin-bottom:6px;filter: drop-shadow(0 0 20px rgba(205,163,73,0.25));}
+.login-title{font-size:13px;color:var(--text-dim);margin-bottom:34px;letter-spacing:1px;}
+.login-card{width:100%;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;}
+.login-err{color:var(--red);font-size:13px;text-align:center;margin-top:10px;min-height:16px;}
+
+.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold-bright),var(--gold-dim));display:flex;align-items:center;justify-content:center;font-weight:800;color:#151007;font-size:14px;}
+
+.empty{text-align:center;padding:40px 20px;color:var(--text-dim);font-size:13px;}
+.empty .ic{font-size:34px;margin-bottom:10px;opacity:0.6;}
+
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:100;display:flex;align-items:flex-end;justify-content:center;}
+.modal{width:100%;max-width:520px;background:var(--bg2);border-radius:22px 22px 0 0;max-height:88vh;overflow-y:auto;padding:20px 18px 30px;border-top:1px solid var(--border);}
+.modal-handle{width:40px;height:4px;background:var(--border);border-radius:4px;margin:0 auto 16px;}
+
+.pill-toggle{display:flex;background:var(--card2);border-radius:12px;padding:4px;gap:4px;}
+.pill-toggle button{flex:1;background:none;border:none;color:var(--text-dim);padding:10px;border-radius:9px;font-size:13px;font-weight:600;}
+.pill-toggle button.active{background:var(--gold);color:#151007;}
+
+.route-stop{display:flex;gap:12px;margin-bottom:4px;}
+.route-stop .timeline{display:flex;flex-direction:column;align-items:center;width:20px;}
+.route-stop .dot{width:12px;height:12px;border-radius:50%;background:var(--card2);border:2px solid var(--gold-dim);flex-shrink:0;}
+.route-stop .dot.done{background:var(--gold);border-color:var(--gold);}
+.route-stop .bar{width:2px;flex:1;background:var(--border);margin:2px 0;}
+.route-stop .content{flex:1;padding-bottom:20px;}
+
+.rate-abc{display:flex;gap:6px;}
+.rate-abc button{flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--card2);color:var(--text-dim);font-weight:700;}
+.rate-abc button.active{background:var(--gold);color:#151007;border-color:var(--gold);}
+
+.chat-bubble{max-width:82%;padding:11px 14px;border-radius:14px;font-size:13.5px;line-height:1.9;margin-bottom:10px;white-space:pre-wrap;}
+.chat-bubble.user{background:var(--gold);color:#151007;margin-right:auto;border-bottom-right-radius:4px;}
+.chat-bubble.ai{background:var(--card2);color:var(--text);margin-left:auto;border-bottom-left-radius:4px;border:1px solid var(--border);}
+.chat-input-bar{position:sticky;bottom:0;display:flex;gap:8px;padding:10px 0;background:var(--bg);}
+
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--card2);border:1px solid var(--gold-dim);color:var(--text);padding:10px 18px;border-radius:30px;font-size:13px;z-index:200;box-shadow:0 6px 20px rgba(0,0,0,0.4);}
+
+.badge-role{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--card2);color:var(--gold-dim);border:1px solid var(--border);}
+
+.spinner{width:16px;height:16px;border:2px solid rgba(21,16,7,0.3);border-top-color:#151007;border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.spinner.light{border:2px solid rgba(243,237,224,0.2);border-top-color:var(--gold-bright);}
+
+.tab-switch-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:6px;}
+.tab-switch-row::-webkit-scrollbar{display:none;}
+.tab-switch-row button{white-space:nowrap;background:var(--card2);border:1px solid var(--border);color:var(--text-dim);padding:8px 14px;border-radius:20px;font-size:12.5px;}
+.tab-switch-row button.active{background:var(--gold);color:#151007;border-color:var(--gold);font-weight:700;}
+
+.center-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:14px;}
+</style>
+</head>
+<body>
+<div id="root" class="bg-pattern"></div>
+
+<script>
+const LOGO_SRC = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAEZAfQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5W2ilIFA6UCmAbRRtGDS/WlHCA9t1IBpX0p8cfmEIoPmdh/e/+vQevTAPSjBxnp6GgBAg980vlrjvVm6IlMc4xmVcuB/eHB/Pg/jUXYA0wFigWSKTAO9AG/4D0P5cUzyl96tWMvlXsbYG1yY2HqrDB/nTGXaxU9QcUAQiFT607yE9/wA6kFLSAj8hPf8AOlFvH7/nUgpw60wIxbR+/wCdOFpEf7351KKetAEUdnBuZZCVBXKsWwAR2P1/nUsVhBvBZWde67sH8DTiodSGGQe1ERkhyCC8Q7jqo/rQAHTrZZSAZHjPIJ4YexH9RT5NPsxCdofcDnO7t3q1DIjgMuHWkuHU7UUDBJ59vSkBBa6VbyWs8sm8MoUqM+pxQulWx7P/AN9Ves/nZ4gf9YhUD36j9RRG3FMCsuj2h6iT/vqkfSbTzFRQ+TjPzf57D9a0Izu4oVCLqQt1Viv8qAKo0SzIOFl/76qWDQtPePcfMP0eryHnii3XyzMm4/eyPp6UAQweHNOkRiwm3Kefn7dj/SorvQNPjeKOJZdznqXzgVso0oiSeJiqHIDjse6kf071UjbdOTJgMMjj8KAHad4W0u4gDyLNzk8Sds8dvSktfDGktcTQzLMWjY9JOq/w9vr+VXtIuP3KpnkcflUjyCLVd+f9ahB/DBH8zQBlTeFtOVZVQTGRc7fn6+lQDw/prJbuqzFWfY/z1svLm8XB6qQaqW8g8l4ySB52AR7AGgCKbwzpEYZiJgqjcx8zoPXpVRPD2nuMhZRnkAv0HvWrK0jFUuCu0fNsXoPQt6n9BT8iQtAv+rQjzT/ebqE+g6n1P0oAxpfD2npbNKBKRxtO/r74qK10GxkMiyCTcrY+/wBu1bl9l4mXPUH86os5UrPHySvzL6igCk+gWAJAEv8A33VK50i2hbID7D/tdD6VuCZJFypzmoJwHQq3Q0gMwaRZsoZfMwf9qo20q1B6P/31Vu1kK74n+8KWQ5NMChb6ZbOJN4f5N3Rvy/pUT6fAXVYw5PfnP4VoW6tIsixqS8mcY7cjn8hTkYWwmMbBpFARWHOGPUj6DPNIDMbT4BgDfuH3ueM+lNNjD6N+dWwAqgDgUKMuAO5pgUvsUOM/N+dNNnF/tfnViI5jU040AUzaxDs35037NH7/AJ1aamGgCv8AZ4/f86QwJ7/nUxppNAERgT3/ADpDCvvUuaQ0AQ+UvvQ0ShM4PPA+tSkVNfbfMiijHEUYB92PJ/nj8KQFLyxzR5YqV/vEjoeaaaYEZQe9G0e9OJpvWgBNgBI7igqKluBi4kHo2KjpAJtFIAKdwPrj8qaOlABtFFFFMAHSlPsaTtSk9D1yKQAKeq7o5B3GGH9abt+XI5Hf2o5ByOtADk+ZdufmHK+/tSx8kqejD9e1NbbuO3OO2alhTzTsH+s/gPqfSgBi/wCqXuck04Cmrxge1PFMBw4ZP94VLLzIx9SaiX7wPYU/69aQAu3eAzbQeM+lOZGQ4YYNMYbhinq5VUlA3AHbIp6E/wD1x/I0AGKdird/bRxRW9zauXtbhSVz1Rh95D7j9QRVbKBVYklOpIHI9aYAKkFDxlD6r1DDoR60AUAPFPQkEEdQeKjzjr0qXaVxnoRkHsR60AKpSRmwoiLdh069M/40rqVlUFcYyDntTAu7zMdUw/4Hg/rirEM6GPyrnlDwsneP/Ee1ADQWQhlOGByPrU2/zRvQbS56eh70kkTwuY5B8y8U2MlS2fug5Ht60AW0X92XXnawBHpkcfyozm5mK8hyJB+Iwf1FJZMXjnDcBgD/AIUiFYbiOVlZo14kVepQ9ce46/hQBOpp6nDE9c0XUBgkADB42G6OQdHXsaidv3T4OODQBo6RM8c9xHkbWIO08ggjuPqKfeWa7xLBlWB+ZD3+lZdrN5d+cnIeNSPwz/iK3Q4ljz0YfrQBhGc2lxuHEbn8m9Pxq9LKsrxOScgHHt0pL2NHDgqDv4ORkE+tZkUEgB8uVlT7pRuSh74PpQBeWbMjvnhBj8TVnSkAtlkkP+sJcE9gf/rYrPdFcpaxZAPLn27/AImtC6crauFOBjAx27UAV7i5Kx+aRncS4HqB0H8quWqeTbqmcsBlj6k8k/nWRfvlLcDpkfzWr4mHlHmgBZ5NxNU4c+Un0pJpSeB1PApWxHEvJBY7FH8z+A/mKAEZQQccE9xUT7x0O72qQn2qKRsfN6UAVmP+kxsBjOVNTR273UvlIQoxl3Y4CqOpNRS/6xG9/wClXJgIYBAMbzhpT3z2X8P50ARTSoiMltkRAck9XPv7e1Z6c5/3if6Vbudqoi9/vN/QVSjPyEjpuI/WgB7U6IYjnlPSNCfxPA/U5/Co2PXNTX6+RbQ2p/1kmJpR6ZHyqfwJP/AhQBTiGI1HtSmlHoKRjxQAxqY1PNMYUAMNNp5GDg9RSMCADg4PQ0AMIpKN2SR6UtAEtrH5lzEvYuP51FIdxcnqXJP6VZs2CTxMezCqj/6xge/NIBjZpB82AOp4p5pnR/1pgDhWd2T7g4GaW32rJvcZROcep7Cmc7OeFB/WhjkAdAO1IBOWJZjyeSaQ8/T0ooPFACHgfWg0emaKACig0UAHagc0g9acOeV/EUwHI2xgwGcdQe49Kkuo1jmKo26MgMp9iMioc09mLBAf4VxSATACgj6EVJ5bJEkoOUbIyOqsO3171GBuOF61PatlZoGH31yP95eR+mR+NADr0h7oyKMCVVkx7kc/rmoScUrtwgP8KAf5/OmqfTk0wJB1Cjp3p5OTUfTpTl5HH3h1FIB1ISUJZT1GCD0I96UU2TO3imBYt3ke2lhRD5WRJ1yFbpn8R/SolO61kA/hJz+NIFkgKSROwRuVZf1H/wBarUMErJJcwBZotpEyp95R67f1pAWtIdJbKa0m4EmXib+7IBnH0IyPrioVTcHx1Vd34ZA/rVVS1ngZ3xuQ8Ui9Dj/9ZBFW9OuFTUovPXdCVZJAP7rAg/40ANxSrKIkKPzCTnP/ADzPqPb1/OrV5bfZZ5IdwfaeGHRh1B/KqhAINAE0TrBcq02QnKSj/YbuPXHB/CnXELW87wygbl7joR2I9iOaitiHjNtL99ATEfVe6/h1FSLcL5SW94cKgxDP12j+43t6HtTAnSUSWgDn95Cdoz3Tt+R4/EVHIwG0DHIBP5ZqF0kikXcOGBGeoIPcHvzR1ETDoUoA0LM/LJjuMU2FxKgb86iglCxOemP8KLPiBc96ALdvMRAYSAyxnbg+nUEelGVcEbhnHK9wP8Krq22Z/Qhf5mpWQPjBKspyrDqDQBC7EW8Uw+9ESG+nQ/41p2dxletZkbn7RIrgDd98ds+o9jUBdrKUI+RET8jHt7GgDopmV0+orMViJyT911O76inxXIZcd6ryklCe5cgfjQBbs+N0nVnP6dqnmO9CD0IxUumWMlxLFDApZ2IVQO5PAFdr8U/C3/COjTEVMNHbRxXDDp5hXfn8ckf8BrOVRRko9ylFtXPMpiZIVU/fR9p/z+VKZtqqDnJ7d6dMP3uBzux+hp8Yih3BkMtx+Sj6n+g/StCSS2gZkaeX5UXj/wCsPUmoVcz3UjkYWPEaAdu5/X+VKzSEbpX3MBhewX2A7Uy3G2I47s386QEzcVF1PPTvSseKbISqbfxNMBtpjzkLcrGSSPXFDOWZnY5JOTUEbEF8dzj9BSyNhQO5oAjmfAZmPTmooQVs4mPVmJx+X+NMmzK6woCWY8gelWZETzDvcJb248tn9W6sF9Tnj8KAJLJEVWu7hQ0MR+VD/wAtX7L9O59vrVKSV7iZ55WLu5JLH+Inqf8APbFFxO166/L5dug2pH7f/X7nvVqGDLuruI0iXfNJj7g9B7np9TSAgA8tfMcZ5wqn+I/561Fkk89afNL58nmFQigbY4x/Avp9e5PrTSuFJPXIA/KmA3rUs8L2ttDcttzIC6KfQHG4+2en0pb5TbSxwHG5VJf/AHj1H4DA/Om6lI1/PGsS5ldVRVH8KKuP8TSAqRL5kiIWwWIBY/zqXVrxLi6IgUCNAI41XoFHT8e59zTNrQ7nxuQgqjdFb1P0qDkAHA5OB6UACjauO9LS0hpgLuIHHWkmO47x9TSyKUVMkbmGdvcD3pue9ACGmqpeRFHU0p4+lCNsZ2B52ED8RigB0xEzM0Y2wR/Kuf8APU1CSNp45PAPpU1ydojgQcRj5iO7Hr/h+FRFSo55JpAJwOfQcfWm/Wlc/LgY65pDzjPagA680GjNB4oASijFFMAGQeKXcedoA9MdqQdKdSATrjPUU6kBGTkdRS0wDbkMR1HNWJds1pFIOJFby5PfuD/P8qhQ4Y5/un+VLESIpcdCQKQDdoyTjJ7U8fdDdRSDpTo38qTLDKNwy+tMB0a+ZkKPmH8Pf8Ka2cZXqORU/wBnY232mBtyofmx1Q9j9PemSSCVvMAwWGWAHGe9ICbaisFbiGZQ6t3X0P4HINRFSCQRyODQWLQxIw4QMAfbOf8AGpZsNHC+fmZMN9QSP5AUwK4LRKwR8I33lbkGlgNxDKs0BKOOjITTtoYbWIGemajj/cOyuZFX+8vVT7ikBYikMLkXMTNA53Mi8DP95fQ/pT3VYdSiAcNBJgpJ2KnjP+I7VLpusrbl4r+BL21YYKMcMPdT2NNi+yyl4PM22cjZR3+9A3Yn27H8+1AD/OLIPMzuRdp/CrLW7W4spZVxFPGsgJ7g8H+RrNuYntcxTf6zIB5zW/LdJc+FbKFwBLbbgp9ixP8AWgDJuonidth/eROdp9wacQpRWA+RxkA1Jcy+dPOwxjIbj3HP8qigI2SRN/Adyn2P/wBf+dAD4FCDar/u+vlP93Psexp3lsY2QqUZTvTPde4B7/8A16iY4XPpzU8bMMeU3AOcehoAgiySyHgZzVyI4XA6Cm5hZwX/AHb+oHyn/ClkhltsGRSFblT1DfQ96YDSxNxgdM/yq0jYIJGRVKI5kc1ajO5gtADZlAYM3bg/Q09RH5ZinjMsXYj7y/n1FNuSMSD2otN0yDGPcnoPegCr9naIlrWTIH/LNv8APFWYD5rxE52jLEehqdxCD8o3MP4zx+QpsWd+49+uO9ID3D9nfwudc1ya/mjBtbBQQSOsrdPyGT+VbfxgtWvvHeraQCCl1bwLGGHSRVBUj9a6r9mVoYvCa26ACaZnuZD3I4C/piqnx1totM1uDWdyiYGN19crj/CvNqyunNb3t9x1Ul73K+x8sXMUkNxJHKpjmjYoynqpBwaRcKuMVvePpYZvFV7c26lYblvOAPqev6gn8a54txXoU5c0VI55LlbQkzfKPqP502Bv3X0J/nTZ8mI47c0kbDnHf5qskkzk1HIeKCaglbcdg6Hr9KAHxDKg9M/NVaWcFyFG5vTsPrVlY5LjMUIOOrnOOPr2FOjEFmR5IWWQdyPkB+n8X8vrQBHDG9mhk2k3sgyh6CMH+M+nsPxqqyjKqzByowAPur9KsTO8m55nYknPJ6moE5GQOTQBIp8tTKeo4Qerf/W61Jffuo47JSSRiW4J7uein6A/maZEyJdb5fmitxuI/vEdf1wKgBkkLyycyOWkcn16mkApXDKMZLDIqZZBFe7GBIjm5De1LaNm5MrYxEmQPft+tU7hj9tmJJO5ifxoAW6Z5JotxzJJlvxJNRygRXEiQkueVfaeG/2c+lOe2cgvK4DHoT0VBxn8eg/GrV5qVnDDHb6TCYwq4knfmSVu5x/CPagCld3F3dSB5xjA2qMYVR6AdhUYy2Cxyeg9qRiZh8xck9Sx/lUjLtwvGR1HpQAIhdgo7/pU0JhN0z7WNrEC+1v4sDjP1OPzpsZC29w38RUIPxPP6ZqJWKwzKONwAP0yD/hQAwlnYu5y7HJPvSE80+IBnAZtq9z7Uiguu7G1VH4D/wCvTAjI9DSDI6gGnFgen60ZIUjPBpAOOEtVfrLKx59AOv5n+VRAY4NOkOWQZyoXj8Tk0hOSaYCEU1WwSQAfTNObcq5Hc4zTaQAW/d7dg3ZyX5z9KaBxTuxP5fWkA7UAIeDiijrzRTAB0z2ozSClJGeRxnoDSAUHGQfqKeVIjR/4Wzg/SnRhXt5Fc4dMMnuM8iogxCY5xmgBR39egpRwO9IPuj2p4wzYAx9TTAF+boRn0zinKwVwsykjoQeoppHPNWLZ42IhuiREeBJ1MZ9fceopARxvNZzh4z+BHDKexHcEU6UIGLRAiNuQP7vt+FNliltZmilG11/EEdiPUVPK0UsKNEBG5OJI+3+8v9RQAOcWVsD1y5/DI/wNIW/dRr3AJP4mmTYCQqp3YTBx0ByeP5GkFADiMgg96XerKI7nIxwso549D/jSxL5jhBw56ehp+zkLIMDpntQBWbfF3EkfZhzVqO9tZIvLmt9sn8MsXBH1HcVWffby4JG3OCGGQKuQzwRyBb20Uof4oz1HqPWgBk6F7IAyLI8QDIVOdyensR6elSLODZWyoRk5Vh+JP8iKv3+l2U1mLvSLsSKP9bCRiSP3x3FY8MO0O4HC8EHsaANnQLX7c2pxjO9bcSrj1DD+hNUj8tyu4YDgxsPr/wDXFSeGr17W7mkVsb4ip+hIqK8YNcMU6B8igB6HdGGbqDtb6/8A16ZE5Rivp/KnJmFyzrux8rp6j/GnXFsxiW4gO+EnAf0/2W9DTAnVlcYf86mtbiWIeVxLCTzC4yrf4H3FZ0Uo/H0qYOQw5oAumCOcvLaZXAy0DHLAeo/vD9aqpIUlHp2NT4LATxEq6EEleCp7MKbOwuVZmAWX+MAYB/2h/UUAMmb5W9TxS2bEW4UdM1XclYgDyQcVZt/uKvoBQBrW2kzXGkXOoRAvFbSKkwA+4GB2k+2QR+XrVFsqcYxXtf7NtjHfXWtWcqKyXsPkjeMqWUbgCO461R+Kvwvk0bN/pCStA2fNtSMmE/7J7r+v1rmddRlyyNPZtq6N74Ca6dKv9OluW/0W6sHiQg/xIwBB/I1B8ctQvfFHjJtP03dNCkMexF9WH+NcJ8M9ctV0nV9Bum8q9XdcWEvu2Ny/mFP4mu1+FWtQDU7nxBruBp+mWqTSSHq8mDtX9CfwFcFW8JyvsdUEnFNbnnfxQeH/AIS+O2gtvspt7GCKWL0kCndn6k5qjoPhfUtcuY4LC3aV3IAx0HufatjwzpOq/E3x1f3tvblpb64a4fIwsKE8ZPsMCvffFdhpvw58I22l6ZtbXdWK2vm4+bYSN5HoMHH412KbpwUeqOeylK58qarHFbXUkETiRY2K7xxuwcZrKQ7ZNvp0q3e7lvbmOQYZJXU/gxqkw/0jjuK6o7GT3JGcnhRT0iCRCSVsBj8oH3n+nt701Qqjc4yo7DufSnRkyM0s3IHb+QHtVCFaRmQIMJF12Dp9T6n3pjsF6U15MsTVeV8e5PQUAEzFsLnk/wAqfny4t46n5U+vr+FEEOIzPcHbH0z3Y+gpsjmV97DaAMKo6KKAGONtqU7u4X8BzV9LbOn6hL18uIRj/eJGfyGRWexw0foGyPyrUScDRpYgeXDMaQGVC5ztH8eBSXEkT6tM7f6pXYjb354A+tRRDcWXnjnirGi20k04W33GfogUclu5z2x60ASBbVY5J9Rd5Lpz8kCHAX0LHsPbrWe0iMxKIoPZVFXr2wtrdmFxcK8wPzLEd3PuapTIIwqpGQz9FY849aAHRSCFDs+e4bv2T/69NVcKBTwgjwPvNjnHTNKyssYdhhScD3PtQAnWN19cH8qEx5EwxycflTMmiNzHvI6FSPzoAIQjMPObbGBlsdT7D3NRtI8iqoAVRwAP89al8uOOLe5D54QA/maYkhRt6/eX7o9/X8KAGyJ5Tbc7nA5AHQ+lNBOOaUDA96fInlopf77chfb1NAEbcEewpCPlLEgeg9aXruZuT1NLDEZZVQfifQdzQAwljgEYApDnAAApzsGkYqOCePpSUANOScnrRS44JpBxQAUUZooAaKcrY3KejdaQcjNDevegBVByABTo+dwPTFSWwWXdExwSCUPow/x6VEAVAPZhmgBRSkDHNNHQeppygE85xg0wHxuuQsudvTd3X/EUs8LxNgngjII6EeoqPrkVatHDx/ZJSACcxOf4W9PoaQDROzwLDcL5ioMRtn5k9vce1OiszOjNbnzNgyyD7wHrjuPpUDAxuUkUgg4PtToZXhlWSFykinKsDyKALOlupkktZADFcDAJ/hf+Fh+PH0JquRjr261auMXR+1WkYWUcyxL2P95R6e3amXaL5glj+aGX51P8x9QaAInTGQ3b0NWLS4WNSs4LnOHQ8blPcehqMCOeMRuypMn3Hbow/uk9j6H8KRmmcLFJyU4Xd/Dz2oAnvbdN2YJDLH/CxHOPQiqcRkAZIZFAzyjYx+RqaC5HmMHHkvnp1XP9KS8gaCcMyDcOSp6MD/SgBFt7pXBQMrf7ANSyOoXlGR8bXH8Le/sfapLWWaIibT5DJGOTE3LJ9R6e4/StKa8sNWtf3g+zXyjv9x/x/ofzoAxNPmWH7SjYBZMD6hgf5A04sWTn7zU3yFZ9uQJFPA/vChSWuABzyBxQB0GvWYstXlTJ2PhgfqP8azYZpYXLwPsLDDDGVYehB4NWNXvWuniZySwTGapRn5BmhAWWNtNzJGbeT+8mWQ/h1H60y5t5bdY3cZjblXHIYexp0ELXGRDzIP4e5Ht6/Sljmktw8bKWjb78TdD/AIH3oAdbTbDkfiD3pZgA26P8P8KpswR/kfcnVT7VMJNy0wFf54iR161LA3ygioVOJGHY81oaNp8uo6hDZW23zp22xhjgFj0XPuePxpPQD0z4HeIzo19fPuA+zPDdlO7Jko+PwI/OvqXxoLPVPC8t5byoR5YkjdT1BGRXw9aPdeFPEMV1c277oWMVxbOMFkPDKR6/1Fev3nivULHQhd2wa78J3C7EmXnycjlHA6D09K8zEp3stmddJXSfVHnXxPtbb7XB4j8P27WkoYR3sca/JFOOjD0DgZx65qlq2r3ep6Pomg6bBsN84uZlBwZXY4Uf7oxXYeFrI6xo/jKzidpbG601p4nPIEsJEifjgMKy/hrbrJ4vsL5o45k03RvteG6ZAIH6tVqS5Ly1cQaalZbM+rfhr4d0vwF4Bhy0abIfPvLkjl2xyc+g6AV4jqGrX/i/4iHxA0LJY6cj3SJMPkjgi5BP4kE+5rutY8Y2d7o1lpbGS7uNiCPS7YbprmTAwGH8KDqSe/0ryL4t+MLjStEuvDkJt4tW1JVS+jgGfs0IORFu7knr/wDqrNVPacsLahycl5Hj0l015c3N03BmleXH+8xP9aZjDFu54rcsvDNynhyXV7rMNijCJHYf62Q9EX1OMk+grCmbHT1r04yT0RytNbgTvcDsvA+vc06R84Vfur0qFTtwO+KQtk4GPx4qhDlVppRHECzngADJNSeXDbsd+JpR1UH5R9T3+gqNbgQJLCjqS/DSJzkegPpTI1Z2wo49TwBSAfLI0z75TkgYAHAUegFM7H6UjFcnacr2OMZozgZ9aYEt/CYVsyf4493/AI8ajjmCRTK3ZGx+IxVnWpRLDbkfwjb/ACrMKecoA6nikA22JbIDqhc4DHsPWpp55LcGG2d1hYYY/dZx7+3tVzS7WFh5ssyQRD/lo38K+w7k0+7vLbeY9Mtmf/ppKPmb3xQBlRysjAwxKrD+Nvmx9B0ojDby5Ys5OSxOSaLktLIEaTc38W37o9vercduEtDK+1UJwGY/n9fT86AJZ4o7KKMSnNzIA5B6RKemfViPyrOz5jF2zk9PYVJcTpMWOJHJOd79WPqf8KQbpU3OSsScZ7/Qe9ADTnpVi9dUs7W2jAyf3sp9WPQfgP5moIIjLIqLgMx/AU8okk0kxJ+zqcKTwXx0AoAgMfyhj8oPT3oZsoqquAOTz1PqaVmMjliQP6UCQJnyxuc8bj0X6e9AEtsoQtLLysY3bfX0/WoHdpZHkkOXc5NSv8llFGDzK5dvoOB/WomG04PWgBp+6R3yDUkT7Ip8feZQufbPNIgyknrt4qIZIbHpmmAqDAZj0UfqabQ/ov3R39aUY43Zx3xSARj82OwGKKQbdxJyFz9aU4yOcDr0oAYeTRRRQAoOOe1KeOeopF54JwPWlXJG3r3FACAEfMpqQg+TE3Ykr/X+tRjI74qaUqwiMXGeXT0Yd/xoAJMbEAHzDOaav3G9SQKkVlW7bzhlCWU4PY9/602WNoXaNxyMHPr70ANWnMMj3popwNMCxM/nxLMfvD5X9z2NQYB60+3++0fZx+vamnpxSAAACCOCO4p6Oyqy5yjHJU+vr9aIY/Owsf8ArP7h6n6etCFUciVGK9DjhhTAQqCKPMkTG794q8DPUCp2tyIPPiYS2+cF1/hPow7GoqAHFUu2PlndIf4Twfw9amg3Txi0nOJU4hZuM/7B/p/9eqzxK4yOGHpViG6jlAg1MNt6LOv3l+vqKQFRtiS4YtG4PDCrQsbi6AYSLOPZsn8afqNs6opkxIrDKTL0k9/rVGB3iO+MurL/ABLwaAL7W8kabJUbzEGVzwcf1FQ2ziLUopJB8mQatLq32iFVugrSJ92UcN+I71TlCsGHuGXHpQAquXyevYVYbAbj0H8qrx8D2HFPQlicc0wJEk8udecBuPxrdjvxcW3kXaLNH2JHzr9G61z8i70x0PUGiC5IO1+HH60gLF5bIjFEJKnlW71WgZg/lv8AeH61aMnmJz1FQumcOv3k5H+FMCYY8xa2NIR/tlu8TbXWRWDemCKxXPAYdsH8KvQTsqEqcccVM1dDTsz7T8QfD7R/iH4Ztr68tVttZaEK06DDbwMEN6/jXzH4t8LeKvh3cXkaJJc6S5/fBQTER2LAdD717f8ACT4ix2kOkpqd2JbDVIgokY/8e9yvylGPocDH1FdT8YbyNNJF5YMhZ0aNxwVkUjlGHfIry5VOVL8UdUYu9l8mfMfwt8XWun6neW8jmCG9glikgbG0MY2AZT+OD/8AWqXwPfpo73lzcOkMLaDAhZuRlnGOO/Tp3xXK/EDw/a6RfWmo6KxbS71fNhVjloZF+/E30PT1BFP8b4EWix2ysEns4ZGAHXC8L+G410ezjLWP2v0FztPXodTpvizUL24OleAbCYajdsQ98y7rm4Y9W9vx4HoK9B8F/AhbJpNa+I90phjBnlj8w89yXbqf616X+zr4Es/C/hYajcwJ/bF0uZpmHKL12L6Ad/U1xHx/8fQ6rdJoGl3Ie03DzTGc+c/YZ/uj+dYzilG9N2v97GpOUrPoeZfGnxGddt9PbToVtNBinaCwtkXYqog5bHqScn8BXlsh+Wu0+LWoaf8AbdD0PR5vOt9KswJpB0e4kO5yPboK4g8soP1NduHVoK5hUactBZ22Ju7Dio4YWkOZeXOAqVLN87Ig6L85+vapLd/LdpMfOB8p9D61uZmhDBbWMTrLElzc9MsfkjP0HU/pWddzsIz82SThR0APsKZJOET5mwP51WXdK+9xgD7opATKAAB6U+bG1NvHGDTCDtJAOAcE00HKkUwHTSh7Fg330Yf1qK3K+UqMGy/HHXHemyKHIB9eafG6RndJ0YcfSkAktvLM4WIs+Om0fKPpTJkmhTy55diHqqkc/UCp59RdkEasscfoo/yTVT5JHBRWCL1LdWNAEttGjsSDsiUZLH09aWd5L6ZflIjQbY0H8K1YaEC2WW5Jitzyo/ilPsPT3qrJM842Rr5UPoOp+p70AI7Iny/eYdl/xpWdpSu4KoUYVR0FNVVXgUvJ4AyTxgUwHGTYhWPq33mPcen0qNyXbLkk9vanyoImKMcyDqAeF+p9aaqEgnsOpPQUAM2j0paGIBwp3e/ak+tADmYCSMn+FOB75ph96COc1e0eGKa8Elzj7NAhlkH94D+H8TgfjSAruhilSPkl1ViPQnt+tReXtMoY4w3l5/H/AABp0srT33mv8ru+TjtzS3UWxhGSSRmRz7noPyx+dAELurOdi/LjCj0FN7UpHy8dScD3pX+QlRgsOCfT2oAaeMUh+lGMYpaAE/CikPWigAGMjJ4pyqN5AbDDoexpqnAIIBz+lOCZCEEEmgAZi7DfgZ6nFG1kcFeccgjmhgRwRSK7IwIOCOc0AWLwpIyTRrhXGGHo3cVLcTGazgEhHmQ5jBHUr1H5c025u4p3D+UI964mVem4dGH+fWq7qyL83IzgEdDQA5VKnDjaSMjP04pBwavIi3mnEggXNsvT+/Hn+Yz+X0qiAQ+G6evagBwbbIjejCnyDEjD3NRzKVJU9Qae5yxPqaYDWwpDEEjvirmGuZFSZx5rAeXKeBIOwPv71VPIqewT7VDLZn/WqDJB7kdV/Ec/Ue9ICKKaeynZosqfuSIwyGHcEd6mmCGZQgEYfkDdlefQnt9aJZPtVuJWx50YCyH+8Ozf0NNtFWVTaycOfmhJ6E91/H+f1oASaOSJ8MCjrzzSlVuIPMVcY4kX+6fX6GrFrOsi/Yr84UcRSHrE3of9k9x261Whleyvd20cZV0bow7g0AOtbySzVoWHm2jn54m6fUeh96fPAEdZbd2MbcpIOD9D7ir2safBEkdzYOZbWXqD1jb+6f6Gs2B/KJjP+rY8H+63Y0IAW4w4FxDFKvqVwT+Iqa4MTIjW7ExKfuP1TPUe4qRbcXUUhiA89OXiA6j+8v8AUVTCbfu8A9qADpn604MY13ISGXkfWjHBBxkHBNA6UwNJFt7tQyt5Ep56ZQ/1FVrqxeP/AFygr2dTkH8aq20picxk8dRWnFc/uyvVD1U9KQFBEeP7r7h6H/GtG3hDaVc3G0/JLGmfTcHP/stVJQFb5PunpXR+FrT+0fD3ie3BzLFBFeRj18tyD+jmlJ2VxpXdjnVbnb27Vq6Jpc2pT/ZrUeZOwJjjHVyOcD1OO1Y4Ocfzre8L3rWGq2dyjbZIpkcMO2CKU20tAirs2PDGpJo8k2la9E7aPdMC7BctbuON4H8x7D0rrfEt9rGg2ccF9qCaz4euUBgvYJNwK9g3cMPU17nr3gDQfid4cg1S2jSy1OWPc0sagbnHBDD1z3r5k8Z+C/FfgWW6juIWn0yNsswXdGAf4j/d+o/GvPaU5KXf8f8AgnXGXKrGpYacmrfDnxRFhZltAmp2cx6/I22Qe2VYEj/ZqXSNPg1jxR4NjkkQRW2lfa7g4ztEabh/IVzfgPxZbWbalYOrQxajaTW7Rk5TeyEAj05wMfT0q14d1BNFvTfai+yJdFjjBxnJfaAuO/APHtVOM43jb0+YtG7pnus3ibUdd8M/2Hpd6LV3T99sBaeTdyI0Uc5OeT2H1rxfxFbx+BLm5fXEhudakiK29ssoYwsejPj26/kO9UtG8T67qOoix8E2k0N/dMV85PnnlJ6n0H9PavQvDv7P92kzar8Qr/an+tljSXJbjJ3ueg9TWCh7HWo9O3UtzTdoHgthZXmoJe6g6sYovnnnYfKCx4GfUnoKZwuSa9J+L3iCy1CwtdP8NWcen+Gba5MdrDEm0Tso+aVu5JJ4z0A9681C54r1Kc+ZXOOasy7ott9s1KGE5PmFicegUn+Qqhud0+TAz1Jrt/h9pUjvrOpuuIdO0y4lLf7br5aD83/SuIhB2qO/SqUrtoTVkNjg3OCcu3vWtb2lpGpfULh1AHEUKhmb2JPC/r9KpKwHC8KOp9aguZ8Dj6AUxE17dLcS7IYhDBH92NTnnuSe596rdD9abEpVcnqeTSnk0wEfOMDqTinS+QFwR5suMFj0HsBTJCWfC8ds+lSW9qXDEcIgy8jdF/z6UAQhQRjaAPQCrkfk2Uay3CCSRhmOHt/vN7e3eomkRclV/dL0Dfec+/8AhULbnkMk2TI3OTSAWZpbqYzXLbnPT0A9BUk+IsRr/rMZf/Z9vrV8QR6faxXFwBJcyjdHF2Qdmb+grOtVDlpZ2OwHc3qxPagBhUhC3RfWgTPEP3Q2u38Z6ge3pT2fzpd8vyovYdFHtSQRvdXICgBpDgDsooASGJdjPIdsSdT3J9B70kzsUVmUKp4jjHT61b2peXQiiOyyt1LF/Yfeb6nt+FUZZftE7SY2r0Vf7qjoKAGqMCnAE5x2GaACTxSFsIeOpHPpQBPaxGaRiRmOMb5O3AqGGQrG6KcFwB+taMdwkWiG3RR5lxJudu+1RwPzOfwrKjQu21eSaAJd0aXzOPmijbI/2sdPzqGR2kbdzuY5YnuaNixzbXOQv3sevpTi0bSfN8qdcL1+goAajNG4YcsBwT2pKex8yRm2hc9h0AptACuAJCAenFNo9aSgAopDRQAUuB36UnaloAU5Xg8jtSOuCO6t0pysGXax5HQ/0pp4GGBwaAHJEHbCnDHjmnSeZEjQTKVOQwz/AJ96idycE8n1Herb3purVYLo7mj/ANXKeo9j6igBbNlSIS55VirD2I4/rS6d5clw0Ex2xyjbv/uN2b6evsTUEEDGYxE8spxg8MQMj+VNiyX456/yoAluIpYZ2hnG2SI7GB7EGmklcjAJ6c1a1aQzfZ7gn940Y3n1I4z+QFMul2XEiOu1s5H0PI/nQBCPm+7z6+1Isj288U8Rw8bBgfcUjKQ2RlWB6+lPwJo2GMSqM4H8Q9R70AW7vbHqDPGMQzjcB22tz+h/lUMflSA29wxQg/u5MZCn0Pt/Ko2cvawknJQFfyOR/Omz5Em5fvAhhQA65Eucyjef74Oc/j3qOaYyhGf744Pv71NIPK2SRlljlXeuOgPcH6H+lPimhlBW6Xt8sidVPv6igC1aSMLEKzfunzGw9COR/n61DYw/a7pbYfelBCf73Uf4VHFHIySrAwYDBeMdwP4l+nf0qOCZoLyKVDho2DD8DQBOjzW9wCpaKeM43DggjpVi7K3Qa5RAkmcTRqMBW9QPQ1LrsqXTpdIArvlXA9R3/KqEUphnWU8qww49RQAxeGx2PSniluECSYX7p5U+1MLBRls49qYEhjinTDN5cw6Oeh+vp9ah8yS3bbMpB7MOhqzbW5u222rpI/ZCdrH8DSN5kDNFKhUjqki/0pAIsqyKcEV3vwWurODxhLbX5VYryylhDN0VsZH9a8/MMUh3Rgow6rn+R71LaXT2N3BcRn5o2BJHcdD+lRUjzRaKg7STN/xz4euPDPiO4sJ02xn95C3Zoz0x9On4ViJJsB5r2eDSLr4m+Fo7MN5ut6Yn7hj1kjx8vPcEYB9CAe9eO39jcWVxLbXcLxTxMUkjcYZWHUEVnRqc65ZboupDld1sfRnw5+KC6dFYSqSLG9hUS5HEF0vysPo2Aa6/4leKNM1vw0b/AE24WO8VTFMmfvKwwVI7g18m+G/EJ0eO8sLpDLpt4PnXGTG46Ov9R3/AVuXc91Zxw3MV3FfWMyYYxkjjurDqD71x1KDUuW+h0QmpLm6mV430ay0+7gvtCMo024UMm8cwygDfGT3wentVrxx5jW2ibVzFc2scmAOpCgY/Ak10ul20eq/DnxRZoROsKJqlq5HKvGdsi+xKPz/u1F4Xii1Txb4at71g1npmmm7dT3Cpvx+LYFbKppd/Zv8AkZ8urS6n0h+zf4G07wz4WXUSiPq94oM8zdUHXy19AO/qa4b9ojxzf6pejQNGilGnFhHLIAR9pfPCj/Zz+f0qtp/xDGnWAsZ2lknHzNYwHDOSchGboo559sD1rm/GPxGbTGmvdShsrjXmjKWNnGN0VjnrI395sdCfw9a5FUqyajy6mvs4xvK+hwfxT1K1LaD4esIvLTRrUpOTjMlw53SE4/ACuUsQrTKG6e9Z2+S4nknmdnlkYszMckk9TXq3wS+H58UanJqusMtv4c00GW4lk4WUrzsHt3J9OO9elpSp6nI/eloeg3elab4S+Ad7cXUgi1LWESVIm4dkzhBj0y278q+ct4G5jwvrXdfGjxnP4n1lmAaKyLBbaEjG2FMhCR2ycmvPo4hIu6RtqDqT/QdzU0Iu3NLqVUfQSS5BwIwT6AUiRMWDy9ew9KmLIoxEgVfzJ+pqQ28ojDyL5aHoX4z9O5roMiI9KaTgE+lKSv8AAdw9cU080wJLSAzSBchR1Zj0AqW7uRKBFAClpF91e7t/ePvTZj5UYgQ/M3Ln+lNlQx2aORhXchffaP8A69IC1olnFe3LSXXFnbjL4PLH0HuaqySC61N5DhY2l4XsF7D8qntJCLPy14ADSt+A/wA/nVG1ieZ2CY+UbiScBQO5oAsarMeNx/fS/vGHoOij8ufxFVd+FCAZC+nc1PbfZt0k2ob5ZT9yNTjJ9WPYe1JNeMRhQkYHRYxQA1YwB5l02xOyDq59AP61Ispjt5pRhZJf3a4/hHfH4cVUUEtufljzUs33Yh2Ck/maAJZG8jSwi8Nctz/uL2/E/wAqqqMACpbljLcxoORGgQD/AD7mmY7Dk0APbdHEw/ifA/DGf8Kt6lZixsYI5P8Aj5ciRwP4RjgfXnP41EhU6mBIPlRwCPoB/hSancPcyGWQ5LsxJoAjgmSMO0nO2Ngg9yMD+ZP4VXhlaMkpnewwvtUsECyLvlJWJOWP9B7mkinEMzS7Bv8A4V7LQAx4WVQJOD6Gk2BULAewPqaHnMkheQl3NLlnILDAXgDsKAEP3dv50lLj1NNBzQAGkpRgtgkD3NIcEnHTtQAlFFFMAQjBDdD39KdtKth+AaZ2p4YlNjYZe2e30pAJ94/WhWK8ZyvoelEYLnaoy3pRQArqM/Lwe6n+lAwMHaCKfEBIPKP3uqH39PxqHGT1waALq2qtbfabSYGSM5eI8MvuPUVWjl2XAkwMZyRSwxSbg0bgMOhBoaNonHnIdp6mgAkcsiqTwBgV0+ppb3/hm3vIwFvbXbFKB/HGRwfwOa5y9jEZiZfuOoII79qvWspjt1QnKSxHr+I/pSY0Ud2ZAXOAw5Pp70jAxsCOGHIIqa0tWujOkeWljj8xVH8QBGR+XP4U1G82Aocb4xlT6r3H9aYiMsCr4GBnOPrTn5c1CR1x0NTJ80oA79KYEkbbrGaPqYnEqg+h4I/lUCxoyiR1YJnBKnoafFIYpZMAHKEEHvyKdIAqefbO21uGBH3fY+opAX7GwacebpNyDcRfOIidrnH93PWqOoMsknnoghc8SRAY2t6geh/SmRQyTMGjkiRu2G21bu7a4ji8y9tnEjfdm6h/Y9j9aAC9lR5cxD93IBIB6Ejkfnmq/VAD2qNUAhLg55x9P880/vQBKDutwD95Dj8KZ9aE+8R/eGKazbQD/D3A9KAGspU706j9a0or83MKx3n75AMKx++n49/oartbv5fmRjzIf769B9fSqq/I+B91v50AW54vLPDblP3WFRj51P8AeHWkWXaCr/dNI58tw47dR6igD3T9mzxNpOn6uINanMFxArG3kH8afxIfp1+n0rsfjlZeGfFDHUNKkhGo8IZ4ujnHAkA/Q/zr5a82S2lSa3dldSGV1OCPQ11vhPVmvtSQ/wBopZ3ZwCkq5il/D+n5VwVaDjL2kWdNOalozmtZsLizu5Le7haKZDyD6eoPce9Z8F1cWuVidgh6r1B/CvojUZPDPivTzpOpxxW+rRLiF42xk+sbHr/un/69eI+JtBuND1B7e5Idc/JKo4Yf0PtW1GuqnuyVmRUpOGq2NXwZ4rXT/t1lLHshv7aW3fbyCzIQpx2OTj6fStDStQi8PXb394pyNJiijA7yOFx+QBP4V5+yFCHQ4I5rrfiCHmk0ryxiKa2ik2/7XlpmidKPNbuVGo7X7GTeeJryV2+zYgySd45f659ffr71lRpJcylpGLMxyWY5J+pqXyRvEUalmzjgck19IfCL4Q6XpNlB4h+JTR26khrbTZD94npvHVj/ALA/H0q5yhSRneU2cd8JfgvqXi6SLUNSD2Ph9Tuac8NMB1CZ7erdBXUeN/E+lWulXmj6FPHa6DppEbtD0uSOiJ6jPU9z7Dn0P4u/FPTLHQn07S0jMSjy5FY7EAx9zC9foK+SPFviGXXrtSIo4LePhIo1Cj6kDvXHG+Jnf7KNreyjd7mbqF5LqmpTXc3Bc5x2VR0H4ClQGTaFHHRRUKLtUIOp5b/CrG7yxgffPU+gr0krHK9S3BKlkcxoktwP4mGVT6DuapXU8t3OzSyM7H7zMck0x2IXA6ngU6CF2wsaFj7CgAGAMCnw/f3f3eaSUrH+7Vg8h+8R0UenvSA4Q478UwFX5mz/ABMcCretyhlt4kAEcCFR79Mmqe7aV9qdfkeVBjl3DE/TOB/I0gGK0jK0MQy0vGfQDk1dsrKS7iZIHSGyiOZLiRtoZvX39hUUe5wtrbRtLI/EgXq3+yPbpmo7y0uoyEuGSIr0jLD5fwoAjuYLVXIimabnqq4B/OoF2gkIvTqSaTYfMCb9xPGEqVwqHy0wcfeb39BQAhGDj2zRIchfpikPU+9Dds9M0APRwqzy5+dvkT8ep/LP51f0O1Wa6EkmPKiwTnufSqLwlbQTbSEaQKpP0NWbCVlXy0JJdgKQFOeTN1M46s5b9aa5ad4oYxlun4mozzLx6mrUoFurRxDNxIPmwPuL6fU96YBHBNdyC3tFLrHySvQ+pqKWJIyVLZI64p8V3Lb2zQ2+Yw/+sYHlvb6VW3E4wufrQA4ggrgfe/lTnYJxjL+nYUhYjLFsue/pTOMcZPue9ACYJ5PNOoYjaeO4pMcUAIaAM04RsVLdEHVjTS2eBwKAGtyeAcUUucdKKAEB4xnj0pQCepA/lTe1GKAHHOevIqSVvM+fjPRsevrTFXcPlOSO1LHgPtkO1W4Jx096AEBwQQeQafL8zkjAPUU2WNomKt9Qex9xQOQKAAspORlH746Vci1ItAbe7USxHo2PmX6HvVEkg8jIp4RARuDLnkZ6UATRtm3aJzuhzlG/uN7+x70zfIIxCwP7sn8Acf5/GrMOnG5jLWsis4HKg81HAR80E/ySAFQT+gP40AWfD90LXVopWOAMrn0/yam8RRQxaqZrQAQTfvFUdFJ6j86y7MBryONzgM20n0zxUs8hMcaPnchIPtS6juQggNhvuHr7e9PlDQy443KQQR+hp/k7rNZRzglWHp71GDuiKnqnT6UxBIVM8hXp2poZ4X3xnGRyOoI96Ijliv8Ae/nT0OfkPU/d+vpQAzdFI2eYj6DkVoWlzdLE9vFPHJAfvQu4Cn6A9/pWe0YPbmo9iZxkg0AWsEF8oyxNwf8AZPY0i56N1HBp9n5aElZ3hkxwduVPsaQfK5WXG0/dden/AOqgBM7SD6GlYdRSMCpw3WlBpgNt55bWTMbsh7MDir1xcxX0YE8ccc46SoNu7/eA4/GqTKGHNR+Tj7rEUASspAIb7wpFbACtwO2aeryeWqybGVejDG4f4iggeoI9RQAw/ICrfc7e3/1qgliKHK9Ooq0AMYpu0DgdPSgBV1OcqqTs0gXoSfmH4102kalFrTLZa1dExv8AKs79UOMDcf6/nXJvCD0qLa8bBlJBHespUk9jSNRrc1NY0640rUbixu0ZZojg5GMjsfoRzXa/Ee3S30DwlIroZntH3AdVxsA/SuZ1DU31zQIGnwb/AE1RE0neSAn5c+6nj6EelW9alTVdQ023ebdBGgVmB+4oRSx/Q1lK7lFvpctJWdup1Xw502x8OaGfGWv+W8vmGPS7Rusrj70nsBwM9uT1xWB4k+Iuraxqr391ctNcgFIj/wAs4F9EH9e9c34k1ubWbxduY7OFRFbwjpHGOg/r9ay0iz1pqjzPnnuJ1OXSJZvdQub591zM8rdtx6VCi7eSMsegqRUAHFOVcZPet1FLYybb3EX5B1yx55oHcn86digsE+5h39ew/wAaYia28mFvNuU81v4YicD8famXl/JMxztUHpHGNqj8KrsjMSXcknrQiKvQUwFjXHJ6nrTiegpaSgAxu4HeniD5gXfMj8RjBOFH8WP5U6MiLDuu9j9xP7x9T7UuWKs01xtZjkqg+Y//AFqQEkVzNbRNDaN9nzwzkhXb8eoH0qB44UTMl0rOeojBP6nFV3jjzkMR9aasannk/WiwDzNwUt12KerdWP40oXan44FAUBeKdMcOif3F5+p5P9KAGmnIvmPGnqeTTR96iNtrqfQ0wNbxBPGbS1toVCrGWPH0A/pWVbXH2eQSjqAcfXHFTaicRwk/eYM34Zx/Q1BGg8nkFixACjqalbARQSeUfMxlx90e/rVhTczIREpRG+8R/F9T3psDQxTFrpSxHSNT/M1Zu9WluAFRY4YxwFjH9etMCi8Dr1xTcHoW/AU8SKSWbLt2U9PxpozuLNyxoAQIB/8AXqSN1iDMRl+ig9B70gUyPhRknpRJtLqsYyFGM/3j60ANUM+QMnPJpEieQ4QE0FecHijcUBWMnDDBNADSMnGcgUcgYoAwKKACiiimAi8deaBjvSUvT6UgExTiWYAE5A6UDpSigBVkZV2kBkBztPb6UoKlgBlAfXnFJS0wEJ2ZHBU0byF2ggp6HtRQAp9j70gGh2Vgy5BHQg8ippbh7lg1zmQgY3fxfn3qHlDz/KpknKEcKw9DQAwIZpgkOWYnC54J/wDr06ZnYs0gIck5z696nnls7iNdkTW846sDuVv6inM5ulEMpTz/AOGUHh/Yn196AC1k2xsp+63FV14k+vFCFo/MikBVweh7GkHJFACj5ZF9jSOOTj14ob7w+tOBHmYY4VjjPp70wJFPmIGAw/Qj19xUTIG6inKpWYxP8pJxz2YU8SfMVnTJHGRwRSAh8sepp6Db04zSsB1U5FdR8PtN0TXddt9J1d7+Ga4crHLbsm0HGQCCCfXnNKclBczHFczsjmASBtPK9vajOK9e+I3gLwt4M0iC5e61m6muGKxoDGqjHqdvv0+teV6XALnVLaAwT3KyyBPKtyBI+eMLkEZ/Cs6VaNWPNHYqVNwdmVgTS16n4/8ACvgfwasMFxqGs3WqOgd7ONosw5HR224B9q80SbTxqAkkiuv7O3/cDr5u3t82MZ/CnTqKouaOwpRcXZkCikxg8V9F6J8H/B2o+C08TRarrQsWtWuihWPeAoOV6dcgivAdZl06S/k/sZLpLQcAXLKzk+vygCppV41W1HoOUHHcqCnbCecU2IZcCvefAfwmt/EXwn1TXsS/2ijE2oB+VlT7/HfPOPpVzqKG4oxueDEU0jNX9Ttvs0zJnoapIVDAybigPzBeuO+KpO6uJqxGpeFmaI43KVYeoNMVpRv2nBYFSfY9a+gfhf8ACbwp4+8ODVLPUdZtSshhlik8pirDB4OORg1gR6L8Il1J7KbxL4hhkWQxtJLaJsBBx25xWH1iDbS3XkX7Nnj0cWB0qUCvc/iF8ETpHhw694X1RNY0wRiVgFAcR/3hjIYflXhwGH56VdOrGorxZMouO4qxMRwKGQqORXvXwV8D+D/HmmXcu/Vre5tCqSo7IVOR1Ugex4rhfi3p3hvw/wCI7vRtDOoTXFs+2WadkCZxyAAM/jmojiFKbgt0U6dlc88x2o2HsK6HwV4W1HxbrcWm6TD5kzfMzE4WNe7Mewr1rXfh/wDD/wABW8Z8Z67e32oOu5bKwUKSPXnnHucVU68YPl6ijBvU8DKkdqb0r02a8+E+oS+WLfxNpQPAl8xJlHuVPP5VneOPAltoGh2ut6dr1rqml3knl25jjKueCTu9CPShV1flaauN03a6ODpw47V3Hwt0HQPFWtx6NqT6nb3kqsyTQFDHwM4IIyOO+a7Dxr4E8A+Dbi3g1rWdd824QyRiKGNuAcc8UpYmMZ8j3BUpNc3Q8W+bLHcQTwfeojGPp9K9TsdK+F15cRwjxDrcTOQAZoUVR9SAcVwfiizttP8AEeo2diWa2gnaOIuwYlQeCSMZqoVVN2s/uFKDirmOIxnPX61KqFs4GAOp7CjKr1G4/kKGkdk3vgIp+VQMAmtSAyHkVVBCg456n3pnV2PcsadCMFT70xf60AOPWmnqfpQ33xT7ZPMkYsQsa/eY9AKYEUzPMw3cKihcnsBVi3t3ugWB2qvANT7Dd/LHEkdun3DLIEHux9SaguEJUA3cTgcBVztFICKSFFO3cCRUJVB3pWVgccH3BpdpOC5GB+AFAAo9BilOAOOvoKCVxhTn37UUwFLts2KAqnrjqablgPlbH0pTSUWAbj1NGMUuKQ0gA4yPXvRSZJJPrQaAEooopgJS0dqDSAWnK24gOcAcZ9qZTlJLArjI9aAJZoWhl2SYHQ56jB6GmspRircEHFJKxYYI2gdvSp2KSWa5BE0Z+9/eQ/1B/nQBAKRhkU/YTD5gB2g7SfQ9qbTAYCy8HkUHBGeB7YqSkJA+8CR7UAJG6qchUP8AvCp3ktpfvR+S2PvR8j8QarHYTwD/ACqWKREIJiRh6NSAuwyw3ZWC8kUSLxFcH/0F/b37fSqssTwXBjkGGU4NOuprWcgx2/2dsc7GLA/gajD7gEkbIX7r+n/1qAGry6/Whuc0sgKSAnjvSScMR70ATT/voY5T97GxvqOh/LFNL+YBv4k6Z/vD/GkjPyuvbrSowAKuNyH8wfagBAcH0NdB8OX8nx5o8ucYnz+hrCKkj5SHUfmK1fBh8vxXpr5+7Jn9DUVfgl6F0/iR6v8AHKe51TS9HtrcPKGuCAiDJZyPlA9+tYSCH4VaYtxIqT+MLyP91kZWxQ9x2L+/atbxR4zuNBTT5Le1hmTz97yOuWUAEYU9iQTzXS3a6H8QPD0drezKDIC9leHrbSHs3+wTww7dRXk05OEIxkvdZ3VIqUnKO585XU099dy3V5K8s8rF3dzksT3NI4yuK1vEGi3mhapcafqUJgurd9jof5g9wRyD3FZJr2ItNaHnu99T6n8G6js/Z/WDdj/iWTr+rV8tLwK9z8N6hs+FCW+7/lykXA/4FXhYrhwStKp6nTiNo+hoaHYz6pq9nYWal7i5lWKMD1JxX2J8MPG+mw6/qXgWxEX2bRreOKF1/wCWzKMTH3+Y/wA6+evgxp1xBJqHiC2gWW7tozBYB3VF89hjdlsAbQf1q14Q8E+MfD/im01wiyJjlLT7dQhLOrfeGN3OQTSxPLVco3tb8xU42SbW5ifGLRG0Dx1qVoB/o7OZoG7GNuR+XT8K4U85FfQHx0sota0CLVLdN91YH5iOrRMefyOD+Jr5+J5rbB1faUlfdEV4ckz6e/ZfvFtPA16pPW+b/wBBWvmvW0Ztb1FlHym4kPH+8a9l+Ceo/YvCcy7iu66c/otZ/gjxT4bufE81lqPhbR4bsyN5FyFd97g/xB2IyfXHWuWnJ06tSVrm0o80II9V+EWoS6H8HbePXjshEE0u2XgrC2SAc+ozj618oXMkctzK8KlYmdiik5IXPAr1H44X3iKYq0t952izNgJEu3Y3ZXx19j0rydBha2wdP4qt/iM8RLaFtj379lu9a0TxEobarGE/+hV5d8VXEnxL8QSbs7rpjmuq+CN4bWDVzu27mjH6NXC+O5fN8Y6tIDktMTmppR/2qb8ip/wYn0H8HBb+EPhxLqjon2m5ie8lOOSqg7Vz6cfrXzRr+s33iDWbvUtRmaa6uZC7sT09APYdK910vVDqXw9ighAHmWJhA7ZClcfmK+f0UrkHqDg0YNXnOUt7jxHuxilsRlGrTh1iVfDr6O+WiNytymTwpClT+eR+VUjTSoyD3rvaT3OVOx3nwUYx/EbTpVONqSk/9+2re/aKnW81nR2VskW7j/x6uU+F0jxeMLZ14Ailz/3wa6/xt41vvDuo2j6bHaSPLEdzTwLIRg9AT0rgqp/WU0uh1Qt7Fpnmdj4dv72wvr2CP/RrGHz5pWyFUZAAz6kkYFUHnkuJXlmOZG6nHtiu71D4lat4g8P6lperSQx27xb40hQRqWDDqBweM1wSoWyVH4muym5O/MrHPNJWsxeOrHC+tNctIVO3ag+4v9afhAcsfMbsOwpYSWmDuc7fmP4VoQOuMJOsQx+6G0+7dT/h+FQj72PekBJYk9Sc0sQLPwMknigBwUySEKQMdz0HvT4jLNIkNmrEKeMDJJ9TTHePBjXcwHXHG4/4U37RMgxExjX0Q4oAmuLCeJz52Q/fJ5qqVdT600uSckEmlBYjAGPegAy3pRtJ+9T1GOKM0wADFFAGTxTnUrCrkcMSF/DrQA0/dz2zinzx+XIsRPzcFvYmnXTLtgSMYCLyfVjyT/n0qFtzPuwSTzSAWdleXES4QcKPaoz6frQc88YFKBjmgAAGMkgc4pCOTjOPejjB5pOtACUUE0UAFL1H0o7UDigBR6Unfj8qD0peCPegB/mt5YRlyF6Ejp7fSlBPl/Lyv8vamrKVIIOR/dNWp5LZo0ktlaObpJGeVb3H+FAEmkXKRieCdQ1vOAHyOVI6MPpmqyxf6QIied23j1qO3cK7h/uspH0Pb9aUSMJlkB+YMGB+lACc55HPpQDmr+qhXnFzHgLKSWA7N3qh60XAaVFJs9M1PImI0kU5V/0Pcf59aYOeB1oAaBt/h/Wnbg64YZ/mKM0EBvrTAUEOvluf91vT2pJVZWXcCD3Bpcq3yyYU9mH9ac5Z02P99P1FIBYMGdA3QkA0kgKSFT1U1FnDKRVu6Kvh1GGIyfcf/WoAj+RxkYVh27H/AArX8Iwyvr0EqqxSEM7MBwBg9TWIDUn266hj8mG4lSIncUViAT64qZxcotIqDSabOz8bw3F9pcdxEjtDbviTaCdu7oT7cYrH8F+JpNBujFIS1nKfmH9w/wB4VjW+rajCW8i+uY9ylW2yEZB6g+oqs6YHFZQork9nLY0lV9/nie4+INPh8daXEvnRJrNugWznZgBcp/zxZux/uk/T0rxy/wBPu7G7e1u7W4huVJUxSRlWz6YNVIry6hXbFPKi+isQKuHXNWdoJZNRu2ktgRA7TMWiz12nPH4UUqcqate6FUnGbvY9Q0uG4g8PQ6W6lLg2/l7COdzDOPrzXmMGl30+oCwhtJ3vC2zydh3A+47VWOragXLm8uCx5JMhzVhte1cyPcHU70zyoInczNuZB0UnPI9qVKlKnd9x1KinbyOp8fSvpukaTolksi2tspeSUAhZZT94g/n+lcMZZT1dz/wI1bbVL+4ga3nvLiS3Zg5iaQlSR0OOmagIrSnT5Y2ZE58zuj2TwFq8154Qit76NvKUNbkuDiRPb14OK8z8Q6NcaRqEkLxSGAkmGUqdsidiD3/xrNl1jU32h7+6YIoRQZT8oHQD0FPGsalLCLeS+uXgVhII2kJUMOjAevvWVOi6c3JbMudVTik90em+BluNN8Owi4jeMzyPKqupUleAD9Dg15rrVtcafq8+9ZIpVkLqSCM85BFRXGs6ncSM9xf3UsjdWeViT+JNNkvru8jjju7maaOLPlrI5YJnrjPSqp0XGbk+oTqKUVFdD1Pw14ktvEWkPZamFeQp5c8ZPMg/vL79/Y1w/iXw5daLcEqklxp7k+TdKh2sPQ+jDuDXN/PE4aNipHIIOCKvRa5qqQyQLqF0IJRtkjErbXHoR3pQounJuD0fQJ1FNe9ud34Bt5rHSJ7m4V40uJQIsgjftHJHqOetcr4uhlTXrmV43WOY70cqcMPY1lXWralcOpnvrmTYoRd0pO1R0A9B7Un9pXs1uLaa6ne2DbxEzkqG9cetONJxqOd9wlUTgonTeCvE400NY3jkW7NuRz0Qn+laWr+EZdXumuvDvlTSS/M9oHAYn1jzwwPoORXn8iZ5HWp7PU72yGLed0Hp2pSotS54OzBVE48szqrP4e+K7u48mLw/qCnu80RijX3LtgAfjV7xLb6T4X8Py6LDcwX2s3JVrueD5o48HIjRu4HOW7npwK5CfxHrE8Rjk1G5aM/w+YcVmpuZ9zEk+pquScrczJvFbHa/DeyuJdWubxVYW9rayO74O0EjaBn1JNX/ABPoupeIru2XSrRp2iQh/nVcZPuRXDf2nfwW32WG8uEtS2/yVkITd646ZqI6heHGbmY/8CNTKlJ1PaJlKolDkZ2dp8MfEMsg+2Q2thAD8891dxKqD1wGJP0AJrI8YQ2NpqyWOmMJLe1iWMzFdrTP1ZyPcngdgBWGNQvAOLmX/vo1H5jySM8rFnPUk5NaRjO95MhuNrIkYgDAGKkUbLdmPVztH9aiRd7cnAHJPoKfO2cKBgKMYrQgiB4JqREdisMKlpG647Cooxx0yc8D1NStIUVooz8zffYd/b6UAOkWC3wu/wA2Tvt+6D9e9QlmbooAoVQOvWlLCgBuG9Fp2fXigg7d3bt70g5OBTAC2AcD2FIKD1PtxUrIEuTGegYA/wBaAHTI1usQcYLxl/z6fyovZN6xAfdjGxR/n3NLqMzTz+Y3cAD6VAVdoyx4jXue5PakAFSMM/A/hB70+S6JgEKKAmdzHHzMfc+ntU2YDG0twS87fdiXgKPc/wBKrGQHPQewoAZkkAHgDtSdTk9KUerGmnmgA6jJ49qBxRiigAxRRRQAUmaMEUpORyMfSgAoopaYAoBOCDntipI4lc4DgH34qI4/Gldy3LYJ9R3pAWZbeW1ZTcxlo2HX1HsaiuYxGysh3RsMqfWiO6lSIxBiYj/A3I/+tTcgLtzweoPb3FAFi5O0FM8Ehh9CM/1pEgZrNpxyqPtb8RTLiKWEqJfT5SOQV7Ee1WLGUpbTIfuPgGgCCB1XcknMbcfQ9jUciEMVbqKMZBHsacTvjVu68GgAi+f5GK7v4d3Q+2aAVVysqvGR1xzj8KaF3qw7jn8KkjmRl8u6DEAYWRfvL/iPagCQ2rSRl4GWZB12feH1HWoAxwB/Ev3T/SkB8qUNFIQwOQ6Gp2/0jLMys/XevB/Ef1oArsB1HTqKlyTGNp+ZDkfSoyCpKkY706A/Ng/Q0AP2CVN8XUfeT09x7VAwyakG5G3IxVh3FL5iOf3qFW/vJ/hQA1AOh/OnEcUjIQMqdy+opA2eD1pgGBS4GK0LTTTPo2o6i0oRLVo0C4z5jOTx7YAJrT8EaLbeIJ9RsZpPKvfspltZHfbGHUjO72xn6VMpqKbfQpRbdjm9ooIGK9Qs/BWjW72xvdX0mTFtJBcn7VkLdNny8Y7DK/kapN4dbwx4a146rqGkzreW6xwJbzCSQyhwQRxwOuay+sRexfspLcwfHGn2enahpsenwCGOXTbadxuJ3OyZZufU1NY6bYyfDXV9TeLdqEOowQRyZPyxsjFhjpyQKn1W7s5PFXht7yEXtslnZxzwhs7hjBXjvz0rbstHhu7LxV4VtL+ztriPUkmgF1J5auibgQD6jIqXO0Vf+tR8t27Hnmm2R1DUrW0V442uJUiDyHCqWIGT7c133ibSvCngWW60q9sdT1nXRGVE03+jW0ZIwHRRlnA6gk4OKddeAraXRrWxtNX0RtchleS7P2rA2NjYAehxg9u9ReMIJrHwRb6dr+q6fqWowXC/Yfs83myQxYO9WbH3emB60nVU5Kz+QcjindHnqxl2CqpZicAAZJNSTQPbylJ43icdVdSp/I1vfD5r5fFFs2lXENpcokjG6mXctum07pMeoGce9euWni611mzSyvbNL+OSNxYav4hjUJdSqQCowvyjGcck1VWq6b0VyYU+Zbnia2mmt4fkum1Arqq3AjWx8k4aIjJff068YrMwB2r0e70ZvCvhDxDBrN7pE7X4i+zR2sokkEivnI44XBNVtP8AA0fiDwzpWo6LdWlpMyyRXSX1xs3urffTjpgjjtTVaNrt6XD2b2OAIBpVUA5NdV8TZ7SbxSxs3tpWjtoI53tQBEZVQK23HbisbX9LbSLi1gklEksttFcONuNhddwX34I5rSMuZJ9yXGzZqeBvDTeJL26WTzks7aLfLJDsLKW+VOGIyCxAPoKwtT0+fTdRubG9QJc20jRSKCGwwPPI4NeheHvBOk3+n+H9am1C3tNJkRl1Jbm62OXVyDsx1B+X6VYHgOJbfTksdR8Py6zZ3LzXazXmUljLAxgnuMA5HvWP1iKk7s09k2tjz2+s9Mh0bTZ7W+ll1KYv9ptWhKLCAflIb+LIrNHFe9N4is7eUWnxH1jQdbSdwiWlnarILUE43GUAbFHoMmsnSvCaaL4x/t+a78NweHkLs0Ed5537ooVIUEZJOePepjiLX5l/wQdLseNkZ60FAFBPfoKfIU8xjGCI8naD6dqZksfU11mIwrzT40ycAc07CIf3jfULyaHkLgrGvlx+nc/U0gHptLbV5ReWPqahdi2fVjmpCdkOB1NRL/e79BQA4Ns+716D/GpIoSULEhUHVm4pI4+pJUY6sxwBTZTGW/1jSY74wKABnj6Juc+vShiUPKgN2Xqfxpocj/VjB/vUKMAsecc0AGWY7nJLVKB5cPmH7zcIP5mo4hlgDwO5p0j+dMSOEHCj0FAFnSI43v4fO/1SHcw9cdqj1KXztSuZRxvlZgPxqKBiHwvVuKfJF5uoNDBliZCq+/NICGSTzGQdAowamPnXW1YkPloMAD+f1p175CfuYWVgrfM4HLn29hUbXspgEKny4h/CnGfqe9MCN4Ch+ZgKYQAfU0quByFyffpQTkksck96AE+pzRnGaKKYCHnjtR2paTjvQAHg0UmKKQC9vaiiimAUDiiigAOO3SjkdKMUZI7ZpASqQAG2qy+o7VPGtrMpDOYn7bhwfxFUwcnjINKI3PIFAF1HxEbO7YeXnMUnXYf/AIk//XqurGOOSJ+GyCP8/jSLFKFJCZHcYzU9qEudsMmFlXhGPcf3T/SgCup+Y59DRGfn2noeKQgq7q3DDgik6EGgAbKt6GnZ3feUH6U6XBIPZhmmgZUkdutACjHZcfjTWQjnBB9aMChSyHKn8KAFVt2Fc8j7rf0pDlZPTNOYrLzgI3t0/wDrU05YbW+8OlAD2OefWmt6+lC8r9KWmAKxTDITTmKuMgYbvjvTBlTkDI7igFT0OD6GkBu+GPEEWj/a7e/sY9Q067VRNA7bTlTkMD2IzVvUPE+nR6fdWfhzRk08XS+XLM8hkkKd1BPQGuWZd1CriodOLdy1NpWGbTW9/a2j/wBji1Ggxi9+z+V9r89s+Zvzv29OnGKxhyaCmG5qnFMlOx0PhvxFYaDbNLFpCT6uufKupZSyofUJjGRWBNLJcXLXFyTK7uXcseWJOTTNgJpSOKFBJtg5Nqxr63qej3tqY9M0NbCYzb/NFwz/ACbQNuD785rEQYYZpygA4bj3FTPCwjDjDJ/eXkf/AFqIpJWBu5p+GtXXRNVW5mgFxbPG8M8Wcb43GGAPrW/dDwVLZRqNb137NGS8diYg2wnqFJ+UZ9a4kcjaaZ5Yz14xUyp3d72KU7Kxo6TcaXa6m0uoWE17Y5O2LzvLbGeCSBzx9K0tZ8TQatrWnzTaZEmj2OEi0+Nyq+XnJG7rk9zXPpE8zBIlLMegHNPkiSEFZHBf+6nOPqabgm7sXM0rEl7JBPfXEtnb/Z7Z3Zo4d27y1J4GT1xXWW/i/RrqxtYvE3h5dRu7WJYEuI52iLov3QwHXA4ri16dMUhUE0SpqSVwUmjZ8U68deuIBDaQ2NhaoY7a1h+7GCck57knqaw9hqUDA4p4TCb34HYetNRUVZCbu7sgCV1nhO98OwaTerrWnW015BumhMjyA3GV2iMbeFwTuyfSuXBzTWXNEo8ysCdh6BTyeF9qczkjYg2j0HU0xR6kAepNBcDKx556sf6UxCFQCQOcdT705RkgU0ccU7ouaYDZTubApWOzB/i7D0pq8AsacAB88nJPakA0KX65PtTtm3qKDIz8LhV9BSBR35oAXoOKQnK7fU5NLwAGbp6etJxkkDGe3pTAcfliPvTUpH7ClX73tQALnd8vBHOasgNbKYo+bqUYc/3FPb6nv+XrUMUnkDfgF2+7nt700+Y6/KpwepA6/U0gLUtta28Y33CyynqsfOPqelVsBidi/KOST2qLY47Gk+pP0xQAuc9sClUZ74HrSZ9B+dHJ60wDqeOlBoooAKSlooASil4ooASiiigAoopaACiiigAOKQZHv7ilpOPWkBPb3k0Dho3zjswyP1p1zcR3TBjGkMvdlztP4dqrfL3zTwFI4YZ9+KALDgzgM/8ArgME9nHr9ardyKCrJyMink+b8w/1g6j196AEU7o/cGkDFG3D/IoBCtkfdagjqKAFIweOlFID8o9qM0wEI7jrTgd4H94dKKaeDkUAOQ/N7NSnikb1Hf8AnSucgN60gEye3NNOM/MD+dOFAwe4oAXauMxtn1BGKQHmnLEDkiRAR2JxmmnI+8OfWgANPVuMEZFNPPI6GkU9qYDiMd+KTtRnjHakB6igBWBPQ80sMzRnKnrwQehFJ9DyKXKPkSfK/Zh0P1pAEgH3l6Ht6U05YgDvQMqSjd6Cdv16UASmYxRlIm2g/eI6t7fSoBz9BTgoUbpD9AOppc7uwA7AUAH0o6nikPelU4570wHgqnbLfoKZIxZsscmjoMmkUFjQAHp9aeke8ZZgif3j3+lMJBboSB0FKysfvsB7UgGsIwSF3N7nijOO1LtAHUUUAKOSAOTSy8uEHQdT/OljIQF/Tp9ajHv1PX2FADhjO7sOAKaPmOT0ob5jjsKWmAtAxkk9B1pKRugHrQAuS+WbqentRjgmkoPJCigBOvPrUscZIGFLFuijvTCAME/cHT3oG+UkgE+w7CkBIpjhm3TgTMP4Vb5fxP8AhUlxqMswwBHEg6LGuP8A69VioHVh+HNNIX1oAcX3A8sTTQMdTk0cdjR0oAKKCe1HTrTAKKKKACkpaSgAxRRRQAmRRmm0UgHZozTaKAHZo3U2igB2QetG4U2igB+RSEjtmm0UAPSRk6Hj07UrMvDKCreg6VHRQBKXBByMZpN4IGetR0UASBh70m4UyigCTeKN496jooAerAZ9KcHGCDnHaoqKAJN+DkZzSMwJyMimUUAP3mlD+vSo6KAJA+D7GkZgelMooAk8wY5pd4qKigCUOPekZgR3qOigCVpAyjOcijepYE5wKiooAkZ9zZOaXzBjvUVFAEm8UbxUdFADywJ56U5pBtwufc1FRQBIHwPl4pN5plFAEgYZycml8wVFRQBK8gOAM7RSeZwfU9ajooAkDADvS7x71FRQBIXFBcVHRQBIHA55zQrKMk5JNR0UASh1Jy+T6AUPMzDb0X+6OlRUUAOyO+aMim0UAOJFGRTaKAHFuSelGRmm0UAOzQTTaKAHA0bqbRQAuaKSigD/2Q==";
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAjuIG2I8Jf4swkaLWRB4MtNWG8uOADujI",
+  authDomain: "kiarice.firebaseapp.com",
+  projectId: "kiarice",
+  storageBucket: "kiarice.firebasestorage.app",
+  messagingSenderId: "869213511215",
+  appId: "1:869213511215:web:faa8654985eac4ba1bb0da",
+  measurementId: "G-J6YDCR5VEB"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const db = getFirestore(fbApp);
+
+window.fbGetAppData = async function(){
+  const ref = doc(db, 'kiarice', 'appdata');
+  const snap = await getDoc(ref);
+  return snap.exists() ? snap.data() : null;
+};
+window.fbSetAppData = async function(data){
+  const ref = doc(db, 'kiarice', 'appdata');
+  await setDoc(ref, data);
+  return true;
+};
+window.__fbReady = true;
+</script>
+<script>
+/* ============================================================
+   KIARICE — پنل مدیریت پخش برنج
+   ============================================================ */
+
+// ---------- Storage helpers (Firebase Firestore) ----------
+async function waitForStorage(maxWaitMs){
+  const start = Date.now();
+  while(!window.__fbReady){
+    if(Date.now()-start > maxWaitMs) return false;
+    await new Promise(r=>setTimeout(r, 150));
+  }
+  return true;
+}
+let storageWarnedOnce = false;
+async function fbSetWithRetry(data, attempt){
+  attempt = attempt || 0;
+  try{
+    await window.fbSetAppData(data);
+    return true;
+  }catch(e){
+    console.error('firestore set failed', e);
+    if(attempt < 4){
+      await new Promise(r=>setTimeout(r, 400*(attempt+1)));
+      return fbSetWithRetry(data, attempt+1);
+    }
+    if(!storageWarnedOnce){
+      storageWarnedOnce = true;
+      showToast('ذخیره دائمی موقتاً در دسترس نیست — کار در همین جلسه ادامه دارد.');
+    }
+    return false;
+  }
+}
+
+// ---------- Seed Data ----------
+const SEED_USERS = [
+  { username: 'Kiasharahimy', password: 'Kiaricemanager2007', role: 'admin', name: 'آقای رحیمی', title: 'مدیر شرکت' },
+  { username: 'Kiasharahimy_bazaryab', password: 'KiaGod2007', role: 'marketer', name: 'کیاشا رحیمی', title: 'بازاریاب' }
+];
+
+const SEED_PRODUCTS = [
+{id:'ind-khatereh', country:'india', flag:'🇮🇳', name:'خاطره هندی', variety:'باسماتی ۱۱۲۱ درجه بالا', basePrice:316, coopPrice:310, rawSize:'۸.۲ تا ۸.۵', cookedSize:'۲۰ تا ۲۲', stick:1, open:5, aroma:3, cookType:'آبکش', usage:'حجیم و تناژ بالا', img:null},
+{id:'ind-tabiat', country:'india', flag:'🇮🇳', name:'طبیعت هندی', variety:'باسماتی ۱۱۲۱ درجه خوب', basePrice:304, coopPrice:298, rawSize:'۸.۲ تا ۸.۴', cookedSize:'۱۹ تا ۲۱', stick:2, open:4, aroma:3, cookType:'آبکش', usage:'حجیم', img:null},
+{id:'ind-mohsen', country:'india', flag:'🇮🇳', name:'محسن هندی', variety:'باسماتی ۱۱۲۱ درجه میانی', basePrice:296, coopPrice:290, rawSize:'۸.۱ تا ۸.۳', cookedSize:'۱۸ تا ۲۰', stick:2, open:4, aroma:3, cookType:'آبکش', usage:'حجیم / رستورانی', img:null},
+{id:'ind-topoli', country:'india', flag:'🇮🇳', name:'توپولی هندی', variety:'باسماتی ۱۱۲۱ (محصول هندوستان)', basePrice:285, coopPrice:279, rawSize:'۷.۵ تا ۸', cookedSize:'۱۷ تا ۱۹', stick:2, open:4, aroma:3, cookType:'آبکش', usage:'حجیم / رستورانی', img:null},
+{id:'ind-shahrouz', country:'india', flag:'🇮🇳', name:'شهروز هندی', variety:'باسماتی هندی ۱۷۱۸', basePrice:280, coopPrice:274, rawSize:'۷.۵ تا ۸', cookedSize:'۱۵ تا ۱۷', stick:2, open:4, aroma:2, cookType:'آبکش', usage:'متوسط', img:null},
+{id:'ind-shahrkhaterat', country:'india', flag:'🇮🇳', name:'شهرخاطرات سفید هندی', variety:'باسماتی درجه پایین‌تر', basePrice:256, coopPrice:251, rawSize:'۷ تا ۷.۵', cookedSize:'۱۴ تا ۱۶', stick:3, open:3, aroma:2, cookType:'آبکش / کته', usage:'سبک تا متوسط', img:null},
+{id:'ind-karan', country:'india', flag:'🇮🇳', name:'کارن برنج سفید هندی', variety:'برنج سفید هندی غیرباسماتی', basePrice:249, coopPrice:244, rawSize:'۶.۵ تا ۷', cookedSize:'۱۲ تا ۱۴', stick:3, open:3, aroma:2, cookType:'کته/دمی', usage:'سبک تا متوسط', img:null},
+{id:'ind-razcoir', country:'india', flag:'🇮🇳', name:'رزکویر برنج سفید هندی', variety:'برنج سفید هندی غیرباسماتی', basePrice:245, coopPrice:240, rawSize:'۶.۵ تا ۷', cookedSize:'۱۲ تا ۱۴', stick:3, open:2, aroma:2, cookType:'کته/دمی', usage:'سبک، مصرف روزمره', img:null},
+{id:'ind-sona10', country:'india', flag:'🇮🇳', name:'سونا صبح محسن ۱۰ک', variety:'سونامسوری', basePrice:225, coopPrice:220, rawSize:'۵ تا ۵.۵', cookedSize:'۹ تا ۱۰', stick:4, open:2, aroma:1, cookType:'کته/دمی', usage:'سبک، ارزان', img:null},
+{id:'ind-sona20', country:'india', flag:'🇮🇳', name:'سونا بخیر محسن ۲۰ک', variety:'سونامسوری', basePrice:223, coopPrice:218, rawSize:'۵ تا ۵.۵', cookedSize:'۹ تا ۱۰', stick:4, open:2, aroma:1, cookType:'کته/دمی', usage:'سبک', img:null},
+{id:'ind-sonakhoosheh', country:'india', flag:'🇮🇳', name:'سونامسوری خوشه ۲۰ک', variety:'سونامسوری', basePrice:212, coopPrice:208, rawSize:'۵ تا ۵.۵', cookedSize:'۹ تا ۱۰', stick:4, open:2, aroma:1, cookType:'کته/دمی', usage:'ارزان‌ترین گروه', img:null},
+
+{id:'pak-nafis', country:'pakistan', flag:'🇵🇰', name:'نفیس پاکستانی', variety:'سوپرکرنل / ۱۱۲۱ درجه ممتاز', basePrice:338, coopPrice:331, rawSize:'۸ تا ۸.۳', cookedSize:'۱۹ تا ۲۱', stick:1, open:5, aroma:4, cookType:'آبکش', usage:'حجیم، بالاترین کیفیت گروه', img:null, pitch:'کیفیت بی‌رقیب، دانه یک‌دست و بلند، کمترین شکستگی و ضایعات، بهترین پخت حتی در دیگ‌های حجیم. تضمین همه‌جانبه کیفیت — گزینه‌ی ویژه‌ی خودمان برای مشتری‌های سطح‌بالا.'},
+{id:'pak-parcham-sk', country:'pakistan', flag:'🇵🇰', name:'پرچم سوپرکرنل', variety:'سوپرکرنل', basePrice:326, coopPrice:319, rawSize:'۷.۵ تا ۸', cookedSize:'۱۷ تا ۱۹', stick:2, open:4, aroma:4, cookType:'آبکش', usage:'حجیم', img:null, pitch:'کیفیت بی‌رقیب، یک‌دست و دانه بلند، کمترین شکستگی و ضایعات، بهترین پخت حتی در پخت‌های حجیم — پرچمدار سوپرکرنل ما با تضمین همه‌جانبه.'},
+{id:'pak-zarvan', country:'pakistan', flag:'🇵🇰', name:'زروان سوپرکرنل', variety:'سوپرکرنل', basePrice:304, coopPrice:298, rawSize:'۷.۵ تا ۸', cookedSize:'۱۶ تا ۱۸', stick:2, open:4, aroma:4, cookType:'آبکش', usage:'حجیم', img:null},
+{id:'pak-aladin', country:'pakistan', flag:'🇵🇰', name:'علادین سوپرکرنل', variety:'سوپرکرنل', basePrice:302, coopPrice:296, rawSize:'۷.۲ تا ۷.۸', cookedSize:'۱۶ تا ۱۸', stick:2, open:4, aroma:4, cookType:'آبکش', usage:'حجیم / رستورانی', img:null},
+{id:'pak-razcoir1121', country:'pakistan', flag:'🇵🇰', name:'رزکویر ۱۱۲۱ پاکستان', variety:'باسماتی ۱۱۲۱', basePrice:296, coopPrice:290, rawSize:'۸ تا ۸.۳', cookedSize:'۱۸ تا ۲۰', stick:2, open:4, aroma:3, cookType:'آبکش', usage:'حجیم', img:null},
+{id:'pak-dila386', country:'pakistan', flag:'🇵🇰', name:'دیلا ۳۸۶ پاکستان', variety:'رقم ۳۸۶ (غیرباسماتی معطر)', basePrice:230, coopPrice:225, rawSize:'۶.۵ تا ۷', cookedSize:'۱۲ تا ۱۴', stick:3, open:3, aroma:3, cookType:'آبکش / کته', usage:'سبک تا متوسط، اقتصادی', img:null, pitch:'گزینه‌ی اقتصادی و مجلسی‌تر با قیمت مناسب — انتخاب خوب برای مشتری‌های حساس به قیمت که هنوز ظاهر خوب می‌خواهند.'},
+{id:'pak-sonastar386', country:'pakistan', flag:'🇵🇰', name:'پاکستان ۳۸۶ سوناستار', variety:'رقم ۳۸۶', basePrice:228, coopPrice:223, rawSize:'۶.۵ تا ۷', cookedSize:'۱۲ تا ۱۴', stick:3, open:3, aroma:3, cookType:'آبکش / کته', usage:'اقتصادی', img:null, pitch:'گزینه‌ی اقتصادی و مجلسی‌تر با قیمت مناسب نسبت به پرچمداران.'},
+{id:'pak-r6-mohsen10', country:'pakistan', flag:'🇵🇰', name:'آر۶ صبح محسن ۱۰ک', variety:'آر۶ / IRRI-6 غیرباسماتی', basePrice:172, coopPrice:169, rawSize:'۶ تا ۶.۵', cookedSize:'۱۰ تا ۱۱', stick:4, open:2, aroma:1, cookType:'کته/دمی، پخت سنگین', usage:'حجم بالا و ارزان (کترینگ اقتصادی)', img:null, pitch:'اقتصادی‌ترین گزینه — مناسب حجم بالا و مصرف کترینگ، نه مجالس.'},
+{id:'pak-r6-emrooz40', country:'pakistan', flag:'🇵🇰', name:'آر۶ برند امروز ۴۰ کیلویی', variety:'آر۶', basePrice:160, coopPrice:157, rawSize:'۶ تا ۶.۵', cookedSize:'۱۰ تا ۱۱', stick:4, open:2, aroma:1, cookType:'کته/دمی', usage:'حجم بالا و ارزان', img:null},
+{id:'pak-r6-40kg', country:'pakistan', flag:'🇵🇰', name:'آر۶ پاکستان ۴۰ کیلویی', variety:'آر۶', basePrice:159, coopPrice:156, rawSize:'۶ تا ۶.۵', cookedSize:'۱۰ تا ۱۱', stick:4, open:2, aroma:1, cookType:'کته/دمی', usage:'حجم بالا و ارزان', img:null},
+{id:'pak-r6-shiraz35', country:'pakistan', flag:'🇵🇰', name:'آر۶ شیراز ۳۵ کیلویی', variety:'آر۶', basePrice:156, coopPrice:153, rawSize:'۶ تا ۶.۵', cookedSize:'۱۰ تا ۱۱', stick:4, open:2, aroma:1, cookType:'کته/دمی', usage:'حجم بالا و ارزان', img:null},
+{id:'pak-rohan386', country:'pakistan', flag:'🇵🇰', name:'روحان ۳۸۶', variety:'رقم ۳۸۶ (منتظر اعلام قیمت)', basePrice:null, coopPrice:null, rawSize:'۶.۵ تا ۷', cookedSize:'۱۲ تا ۱۴', stick:3, open:3, aroma:3, cookType:'آبکش / کته', usage:'اقتصادی', img:null},
+
+{id:'ir-ayani', country:'iran', flag:'🇮🇷', name:'عیانی پرچمدار', variety:'عیانی (رقم ممتاز شمال)', basePrice:537, coopPrice:526, rawSize:'۶.۵ تا ۷', cookedSize:'۱۲ تا ۱۴', stick:2, open:4, aroma:4, cookType:'آبکش', usage:'مجلسی، بالاترین رده قیمتی', img:null},
+{id:'ir-damsiah', country:'iran', flag:'🇮🇷', name:'دمسیاه پرچمدار', variety:'دمسیاه', basePrice:485, coopPrice:475, rawSize:'۶ تا ۶.۵', cookedSize:'۱۱ تا ۱۳', stick:2, open:4, aroma:4, cookType:'آبکش', usage:'مجلسی', img:null},
+{id:'ir-hashemi', country:'iran', flag:'🇮🇷', name:'هاشمی پرچمدار فیمس', variety:'هاشمی (گیلان)', basePrice:475, coopPrice:466, rawSize:'۶ تا ۷', cookedSize:'۱۲ تا ۱۴', stick:2, open:4, aroma:4, cookType:'آبکش، تهدیگ زعفرانی', usage:'مجلسی، پخت سبک با کیفیت بالا', img:null},
+{id:'ir-fajr-parcham', country:'iran', flag:'🇮🇷', name:'فجر پرچمدار', variety:'فجر درجه یک', basePrice:382, coopPrice:374, rawSize:'۵.۵ تا ۶.۵', cookedSize:'۱۰ تا ۱۲', stick:3, open:4, aroma:3, cookType:'آبکش / کته', usage:'متوسط، رستورانی روزمره', img:null, pitch:'پرچمدار ما در بین ایرانی‌ها. قیمتش پایین‌تر از هاشمی و دیگر پرچمداران ایرانیه، اما پخت آن از همه‌ی برنج‌ها بهتره: ظاهر زیبا و مجلسی، پخت خوب و عطر ایرانی‌پسند. برای مشتری که دنبال تعادل قیمت و کیفیته، بهترین پیشنهاده.'},
+{id:'ir-fajr-gorgan10', country:'iran', flag:'🇮🇷', name:'فجر گرگان ۱۰ کیلویی', variety:'فجر', basePrice:361, coopPrice:354, rawSize:'۵.۵ تا ۶.۵', cookedSize:'۱۰ تا ۱۲', stick:3, open:4, aroma:3, cookType:'آبکش / کته', usage:'متوسط، بسته خرده‌فروشی', img:null},
+{id:'ir-fajr50', country:'iran', flag:'🇮🇷', name:'فجر ۵۰ کیلویی', variety:'فجر (بسته عمده)', basePrice:351, coopPrice:344, rawSize:'۵.۵ تا ۶.۵', cookedSize:'۱۰ تا ۱۲', stick:3, open:4, aroma:3, cookType:'آبکش / کته', usage:'حجیم، کترینگ/تالار اقتصادی', img:null},
+{id:'ir-shiroudi', country:'iran', flag:'🇮🇷', name:'شیرودی درجه یک', variety:'شیرودی (مازندران)', basePrice:356, coopPrice:349, rawSize:'۶ تا ۶.۵', cookedSize:'۱۱ تا ۱۳', stick:3, open:4, aroma:3, cookType:'آبکش', usage:'متوسط، رستورانی', img:null},
+{id:'ir-neda', country:'iran', flag:'🇮🇷', name:'ندا پرچمدار', variety:'ندا (رقم اقتصادی شمال)', basePrice:340, coopPrice:333, rawSize:'۵.۵ تا ۶', cookedSize:'۹ تا ۱۱', stick:3, open:3, aroma:2, cookType:'آبکش / کته', usage:'متوسط، اقتصادی‌ترین ایرانی', img:null},
+{id:'ir-anbarbu-topoli', country:'iran', flag:'🇮🇷', name:'عنبربو توپولی', variety:'عنبربو (جنوب) دانه کلفت‌تر', basePrice:372, coopPrice:365, rawSize:'۶ تا ۶.۵', cookedSize:'۱۰ تا ۱۲', stick:4, open:2, aroma:4, cookType:'کته/دمی', usage:'حجیم، مقاوم به له‌شدن', img:null},
+{id:'ir-anbarbu-south', country:'iran', flag:'🇮🇷', name:'عنبربو جنوب', variety:'عنبربو', basePrice:356, coopPrice:349, rawSize:'۶ تا ۶.۵', cookedSize:'۱۰ تا ۱۲', stick:4, open:2, aroma:4, cookType:'کته/دمی', usage:'حجیم، اقتصادی‌ترین عنبربو', img:null},
+
+{id:'th-razfakhr25', country:'thailand', flag:'🇹🇭', name:'رزفاخر ۲۵ کیلویی', variety:'برنج تایلندی سفید درجه بهتر', basePrice:181, coopPrice:177, rawSize:'۶.۵ تا ۷', cookedSize:'۱۲ تا ۱۳', stick:2, open:3, aroma:2, cookType:'آبکش / کته', usage:'متوسط، بسته کوچک‌تر', img:null},
+{id:'th-thai50', country:'thailand', flag:'🇹🇭', name:'تایلند ۵۰ کیلویی', variety:'برنج تایلندی سفید عمده', basePrice:179, coopPrice:174, rawSize:'۶.۵ تا ۷', cookedSize:'۱۲ تا ۱۳', stick:2, open:3, aroma:2, cookType:'آبکش / کته سنگین', usage:'حجیم، مصرف عمده / کترینگ اقتصادی', img:null},
+];
+
+const COUNTRY_LABEL = {india:'برنج‌های هندی', pakistan:'برنج‌های پاکستانی', iran:'برنج‌های ایرانی', thailand:'برنج‌های تایلندی'};
+const GENERAL_PITCH = {
+  compare_india_pak: 'هندی‌ها از نظر ظاهر دانه و عطر خیلی خوبن، ولی از نظر پخت، پاکستانی‌ها یک درجه بهتر عمل می‌کنن — خصوصاً در دیگ‌های حجیم.'
+};
+
+// ---------- App State ----------
+const state = {
+  user: null,
+  users: [],
+  products: [],
+  customers: [],
+  routes: {}, // { username: { 'YYYY-MM-DD': [ {id,title,note,done} ] } }
+  page: 'login',
+  adminTab: 'stats',
+  marketerTab: 'route',
+  toastMsg: null,
+  chatHistories: {}, // per username
+};
+
+function todayStr(){
+  const d = new Date();
+  return d.toISOString().slice(0,10);
+}
+function nowFa(){
+  return new Date().toLocaleString('fa-IR');
+}
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+function toman(n){ if(n===null||n===undefined) return '—'; return Number(n).toLocaleString('fa-IR'); }
+
+function showToast(msg){
+  state.toastMsg = msg;
+  render();
+  setTimeout(()=>{ state.toastMsg=null; render(); }, 2200);
+}
+
+// ---------- Persistence ----------
+// All shared org data lives in ONE Firestore document to keep this simple
+// and avoid write conflicts across multiple screens.
+async function loadAll(){
+  await waitForStorage(6000);
+  let data = null;
+  try{ data = await window.fbGetAppData(); }
+  catch(e){ console.error('firestore get failed', e); }
+
+  if(!data){
+    data = { users: SEED_USERS, products: SEED_PRODUCTS, customers: [], routes: {}, messages: [] };
+    await fbSetWithRetry(data);
+  }
+  state.users = data.users || SEED_USERS;
+  state.products = data.products || SEED_PRODUCTS;
+  state.customers = data.customers || [];
+  state.routes = data.routes || {};
+  state.messages = data.messages || [];
+
+  try{
+    const session = JSON.parse(localStorage.getItem('kiarice_session') || 'null');
+    if(session){
+      const u = state.users.find(x=>x.username===session.username);
+      if(u) state.user = u;
+    }
+  }catch(e){}
+}
+
+async function saveAll(){
+  return fbSetWithRetry({
+    users: state.users,
+    products: state.products,
+    customers: state.customers,
+    routes: state.routes,
+    messages: state.messages || []
+  });
+}
+async function saveUsers(){ await saveAll(); }
+async function saveProducts(){ await saveAll(); }
+async function saveCustomers(){ await saveAll(); }
+async function saveRoutes(){ await saveAll(); }
+async function saveMessages(){ await saveAll(); }
+
+
+
+// ================= RENDER ENGINE (simple) =================
+const root = document.getElementById('root');
+function render(){
+  if(!state.user){ renderLogin(); return; }
+  if(state.user.role === 'admin') renderAdmin();
+  else renderMarketer();
+}
+
+function el(html){
+  const t = document.createElement('template');
+  t.innerHTML = html.trim();
+  return t.content.firstElementChild;
+}
+
+// ================= LOGIN =================
+function renderLogin(){
+  root.innerHTML = `
+  <div class="login-wrap">
+    <img src="${LOGO_SRC}" class="login-logo"/>
+    <div class="login-title">پخش برنج کیارایس · ورود به سامانه</div>
+    <div class="login-card">
+      <div class="field">
+        <label>نام کاربری</label>
+        <input id="lg-user" type="text" placeholder="نام کاربری خود را وارد کنید" autocomplete="username"/>
+      </div>
+      <div class="field">
+        <label>رمز عبور</label>
+        <input id="lg-pass" type="password" placeholder="رمز عبور" autocomplete="current-password"/>
+      </div>
+      <button class="btn" id="lg-btn">ورود به سامانه</button>
+      <div class="login-err" id="lg-err"></div>
+    </div>
+  </div>`;
+  document.getElementById('lg-btn').onclick = doLogin;
+  document.getElementById('lg-pass').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+}
+
+async function doLogin(){
+  const u = document.getElementById('lg-user').value.trim();
+  const p = document.getElementById('lg-pass').value;
+  const err = document.getElementById('lg-err');
+  const found = state.users.find(x=>x.username===u && x.password===p);
+  if(!found){ err.textContent = 'نام کاربری یا رمز عبور اشتباه است.'; return; }
+  state.user = found;
+  try{ localStorage.setItem('kiarice_session', JSON.stringify({username: found.username})); }catch(e){}
+  state.adminTab = 'stats'; state.marketerTab = 'route';
+  render();
+}
+
+async function doLogout(){
+  state.user = null;
+  try{ localStorage.removeItem('kiarice_session'); }catch(e){}
+  render();
+}
+
+// ================= SHARED HEADER / TABBAR =================
+function headerHtml(title, sub){
+  return `
+  <div class="header">
+    <div>
+      <h1>${title}</h1>
+      <div class="sub">${sub||''}</div>
+    </div>
+    <div class="row gap">
+      <div class="avatar">${(state.user.name||'?').slice(0,1)}</div>
+    </div>
+  </div>`;
+}
+
+function toastHtml(){
+  if(!state.toastMsg) return '';
+  return `<div class="toast">${state.toastMsg}</div>`;
+}
+
+// ================= ADMIN =================
+const ADMIN_TABS = [
+  {key:'stats', label:'آمار کلی', icon:'📊'},
+  {key:'accounting', label:'حسابداری', icon:'💰'},
+  {key:'customers', label:'مشتری‌ها', icon:'📁'},
+  {key:'messages', label:'پیام و ماموریت', icon:'📨'},
+  {key:'manage', label:'مدیریت', icon:'⚙️'},
+];
+
+function renderAdmin(){
+  root.innerHTML = `
+    ${headerHtml('پنل مدیریت کیارایس', state.user.name + ' · مدیر')}
+    <div id="page-content" style="padding:16px 16px 10px;"></div>
+    <div class="tabbar" id="tabbar"></div>
+    ${toastHtml()}
+  `;
+  const tabbar = document.getElementById('tabbar');
+  tabbar.innerHTML = ADMIN_TABS.map(t=>`
+    <button data-tab="${t.key}" class="${state.adminTab===t.key?'active':''}">
+      <span style="font-size:18px;">${t.icon}</span>${t.label}
+    </button>`).join('');
+  tabbar.querySelectorAll('button').forEach(b=>{
+    b.onclick = ()=>{ state.adminTab = b.dataset.tab; render(); };
+  });
+  const content = document.getElementById('page-content');
+  if(state.adminTab==='stats') renderAdminStats(content);
+  else if(state.adminTab==='accounting') renderAdminAccounting(content);
+  else if(state.adminTab==='customers') renderAdminCustomers(content);
+  else if(state.adminTab==='messages') renderAdminMessages(content);
+  else if(state.adminTab==='manage') renderAdminManage(content);
+}
+
+function marketers(){ return state.users.filter(u=>u.role==='marketer'); }
+
+function computeMarketerStats(username, period){
+  // period: 'day' | 'month'
+  const now = new Date();
+  const ym = now.toISOString().slice(0,7);
+  const today = todayStr();
+  let totalKg=0, totalRevenue=0, visitCount=0, purchaseCount=0, noPurchaseCount=0;
+  const reasons = {};
+  state.customers.forEach(c=>{
+    (c.visits||[]).forEach(v=>{
+      if(v.marketer !== username) return;
+      if(period==='day' && v.date !== today) return;
+      if(period==='month' && !v.date.startsWith(ym)) return;
+      visitCount++;
+      if(v.purchased){
+        purchaseCount++;
+        (v.items||[]).forEach(it=>{ totalKg += Number(it.weightKg||0); totalRevenue += Number(it.totalPrice||0); });
+      } else {
+        noPurchaseCount++;
+        const r = v.noPurchaseReason || 'نامشخص';
+        reasons[r] = (reasons[r]||0)+1;
+      }
+    });
+  });
+  return {totalKg, totalRevenue, visitCount, purchaseCount, noPurchaseCount, reasons};
+}
+
+function computeCommission(totalKg, totalRevenue){
+  if(totalKg<=0) return 0;
+  const TIER_KG = 5000; // 5 tons
+  if(totalKg<=TIER_KG) return totalRevenue*0.02;
+  const avgPrice = totalRevenue/totalKg;
+  const under = TIER_KG*avgPrice*0.02;
+  const over = (totalKg-TIER_KG)*avgPrice*0.03;
+  return under+over;
+}
+
+function renderAdminStats(content){
+  const allVisitsToday = [];
+  state.customers.forEach(c=> (c.visits||[]).forEach(v=>{ if(v.date===todayStr()) allVisitsToday.push(v); }));
+  const totalCustomers = state.customers.length;
+  let monthKg=0, monthRevenue=0, dayKg=0, dayRevenue=0;
+  marketers().forEach(m=>{
+    const sm = computeMarketerStats(m.username, 'month');
+    monthKg += sm.totalKg; monthRevenue += sm.totalRevenue;
+    const sd = computeMarketerStats(m.username, 'day');
+    dayKg += sd.totalKg; dayRevenue += sd.totalRevenue;
+  });
+
+  let best=null, worst=null;
+  marketers().forEach(m=>{
+    const s = computeMarketerStats(m.username, 'month');
+    if(!best || s.totalRevenue>best.rev) best = {name:m.name, rev:s.totalRevenue};
+    if(!worst || s.totalRevenue<worst.rev) worst = {name:m.name, rev:s.totalRevenue};
+  });
+
+  content.innerHTML = `
+    <div class="section-title" style="margin-top:0;"><span>امروز</span><span class="line"></span></div>
+    <div class="stat-grid" style="margin-bottom:8px;">
+      <div class="stat-box"><div class="num">${toman(dayRevenue)}</div><div class="label">فروش امروز (تومان)</div></div>
+      <div class="stat-box"><div class="num">${toman(dayKg)}</div><div class="label">فروش امروز (کیلوگرم)</div></div>
+    </div>
+    <div class="section-title"><span>این ماه</span><span class="line"></span></div>
+    <div class="stat-grid">
+      <div class="stat-box"><div class="num">${toman(monthRevenue)}</div><div class="label">فروش این ماه (تومان)</div></div>
+      <div class="stat-box"><div class="num">${toman(monthKg)}</div><div class="label">فروش این ماه (کیلوگرم)</div></div>
+      <div class="stat-box"><div class="num">${allVisitsToday.length}</div><div class="label">مراجعه‌های امروز</div></div>
+      <div class="stat-box"><div class="num">${totalCustomers}</div><div class="label">کل مشتری‌های ثبت‌شده</div></div>
+    </div>
+
+    <div class="section-title"><span>عملکرد بازاریاب‌ها (این ماه)</span><span class="line"></span></div>
+    <div id="marketer-perf"></div>
+
+    ${best && worst ? `
+    <div class="section-title"><span>خلاصه</span><span class="line"></span></div>
+    <div class="card tight">
+      <div class="row" style="margin-bottom:8px;"><span class="chip green">🏆 بهترین: ${best.name}</span><span>${toman(best.rev)} ت</span></div>
+      <div class="row"><span class="chip red">⬇ ضعیف‌ترین: ${worst.name}</span><span>${toman(worst.rev)} ت</span></div>
+    </div>` : ''}
+
+    <div class="section-title"><span>مراجعه‌های امروز</span><span class="line"></span></div>
+    <div id="today-visits"></div>
+  `;
+
+  const perfBox = document.getElementById('marketer-perf');
+  if(marketers().length===0){
+    perfBox.innerHTML = `<div class="empty"><div class="ic">👤</div>هنوز بازاریابی اضافه نشده.</div>`;
+  } else {
+    perfBox.innerHTML = marketers().map(m=>{
+      const s = computeMarketerStats(m.username, 'month');
+      const commission = computeCommission(s.totalKg, s.totalRevenue);
+      return `
+      <div class="card tight" style="margin-bottom:10px;">
+        <div class="row"><b>${m.name}</b><span class="chip gold">${toman(s.totalKg)} کیلو</span></div>
+        <div class="row" style="margin-top:8px;font-size:12.5px;color:var(--text-dim);">
+          <span>فروش: ${toman(s.totalRevenue)} ت</span>
+          <span>مراجعه: ${s.visitCount}</span>
+        </div>
+        <div class="row" style="margin-top:6px;font-size:12.5px;color:var(--text-dim);">
+          <span>خرید: ${s.purchaseCount}</span>
+          <span>عدم خرید: ${s.noPurchaseCount}</span>
+        </div>
+        <div class="row" style="margin-top:8px;">
+          <span style="font-size:12px;color:var(--gold-dim);">پورسانت تخمینی</span>
+          <b style="color:var(--gold-bright);">${toman(Math.round(commission))} ت</b>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  const tv = document.getElementById('today-visits');
+  if(allVisitsToday.length===0){
+    tv.innerHTML = `<div class="empty"><div class="ic">🗓️</div>امروز هنوز مراجعه‌ای ثبت نشده.</div>`;
+  } else {
+    tv.innerHTML = allVisitsToday.slice().reverse().map(v=>{
+      const cust = state.customers.find(c=>(c.visits||[]).includes(v));
+      return `<div class="card tight" style="margin-bottom:8px;">
+        <div class="row"><b>${cust?cust.shopName:'—'}</b>${v.purchased?'<span class="chip green">خرید شد</span>':'<span class="chip red">بدون خرید</span>'}</div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:4px;">بازاریاب: ${(state.users.find(u=>u.username===v.marketer)||{}).name||v.marketer}</div>
+      </div>`;
+    }).join('');
+  }
+}
+
+function renderAdminAccounting(content){
+  content.innerHTML = `
+    <div class="section-title"><span>لیست قیمت برنج‌ها</span><span class="line"></span></div>
+    <div class="card tight" style="margin-bottom:14px;font-size:12px;color:var(--text-dim);">
+      قیمت پایه و نرخ همکاری هر برنج رو از همین‌جا می‌تونید ویرایش کنید.
+    </div>
+    <div id="price-list"></div>
+    <div class="section-title"><span>سود خالص و پورسانت (این ماه)</span><span class="line"></span></div>
+    <div id="profit-summary"></div>
+  `;
+  const plist = document.getElementById('price-list');
+  plist.innerHTML = state.products.map(p=>`
+    <div class="card tight" style="margin-bottom:8px;">
+      <div class="row"><b style="font-size:13.5px;">${p.flag} ${p.name}</b></div>
+      <div class="row gap" style="margin-top:8px;">
+        <div style="flex:1;">
+          <label style="margin-bottom:4px;">قیمت پایه</label>
+          <input type="number" data-id="${p.id}" data-field="basePrice" value="${p.basePrice??''}" style="padding:8px;font-size:13px;"/>
+        </div>
+        <div style="flex:1;">
+          <label style="margin-bottom:4px;">نرخ همکاری</label>
+          <input type="number" data-id="${p.id}" data-field="coopPrice" value="${p.coopPrice??''}" style="padding:8px;font-size:13px;"/>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  plist.querySelectorAll('input').forEach(inp=>{
+    inp.addEventListener('change', async ()=>{
+      const p = state.products.find(x=>x.id===inp.dataset.id);
+      p[inp.dataset.field] = inp.value===''?null:Number(inp.value);
+      await saveProducts();
+      showToast('قیمت به‌روزرسانی شد.');
+    });
+  });
+
+  let totalRevenue=0, totalCommission=0, totalKg=0;
+  marketers().forEach(m=>{
+    const s = computeMarketerStats(m.username, 'month');
+    totalRevenue += s.totalRevenue; totalKg += s.totalKg;
+    totalCommission += computeCommission(s.totalKg, s.totalRevenue);
+  });
+  const summary = document.getElementById('profit-summary');
+  summary.innerHTML = `
+    <div class="card">
+      <div class="row" style="margin-bottom:10px;"><span>فروش کل (تومان)</span><b>${toman(totalRevenue)}</b></div>
+      <div class="row" style="margin-bottom:10px;"><span>فروش کل (کیلوگرم)</span><b>${toman(totalKg)}</b></div>
+      <div class="row" style="margin-bottom:10px;"><span>مجموع پورسانت بازاریاب‌ها</span><b style="color:var(--gold-bright);">${toman(Math.round(totalCommission))}</b></div>
+      <div class="row"><span>سود خالص تخمینی</span><b style="color:var(--green);">${toman(Math.round(totalRevenue-totalCommission))}</b></div>
+    </div>
+  `;
+}
+
+function renderAdminCustomers(content){
+  content.innerHTML = `
+    <div class="field"><input id="cust-search" placeholder="جستجوی مشتری (نام فروشگاه، شهر...)"/></div>
+    <div id="cust-list"></div>
+  `;
+  const search = document.getElementById('cust-search');
+  const list = document.getElementById('cust-list');
+  function draw(){
+    const q = search.value.trim();
+    const items = state.customers.filter(c=> !q || (c.shopName+c.city+c.ownerName).includes(q));
+    if(items.length===0){ list.innerHTML = `<div class="empty"><div class="ic">📁</div>مشتری‌ای پیدا نشد.</div>`; return; }
+    list.innerHTML = items.slice().reverse().map(c=>{
+      const lastVisit = (c.visits||[])[c.visits.length-1];
+      const marketerName = (state.users.find(u=>u.username===c.createdBy)||{}).name || c.createdBy;
+      return `<div class="card tight cust-card" data-id="${c.id}" style="margin-bottom:10px;">
+        <div class="row"><b>${c.shopName||'بدون نام'}</b><span class="chip ${c.rating==='A'?'green':c.rating==='C'?'red':'gold'}">${c.rating||'—'}</span></div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:6px;">${c.city||''} · ثبت‌کننده: ${marketerName}</div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:4px;">تعداد مراجعه: ${(c.visits||[]).length}</div>
+      </div>`;
+    }).join('');
+    list.querySelectorAll('.cust-card').forEach(card=>{
+      card.onclick = ()=> openCustomerDetail(card.dataset.id);
+    });
+  }
+  search.addEventListener('input', draw);
+  draw();
+}
+
+function openCustomerDetail(id){
+  const c = state.customers.find(x=>x.id===id);
+  if(!c) return;
+  const marketerName = (state.users.find(u=>u.username===c.createdBy)||{}).name || c.createdBy;
+  const modal = el(`<div class="modal-bg"><div class="modal">
+    <div class="modal-handle"></div>
+    <h2 style="margin:0 0 4px;font-size:18px;">${c.shopName||'بدون نام'}</h2>
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:16px;">ثبت‌کننده: ${marketerName}</div>
+    ${c.shopPhoto?`<img src="${c.shopPhoto}" style="width:100%;border-radius:12px;margin-bottom:12px;"/>`:''}
+    <div class="card tight" style="margin-bottom:10px;">
+      <div class="row" style="margin-bottom:6px;"><span style="color:var(--text-dim);">مالک/مسئول</span><span>${c.ownerName||'—'}</span></div>
+      <div class="row" style="margin-bottom:6px;"><span style="color:var(--text-dim);">تلفن</span><span>${c.phone||'—'}</span></div>
+      <div class="row" style="margin-bottom:6px;"><span style="color:var(--text-dim);">شهر</span><span>${c.city||'—'}</span></div>
+      <div class="row"><span style="color:var(--text-dim);">آدرس</span><span style="text-align:left;max-width:70%;">${c.address||'—'}</span></div>
+    </div>
+    <div class="card tight" style="margin-bottom:10px;">
+      <div class="row" style="margin-bottom:6px;"><span style="color:var(--text-dim);">حساسیت قیمت/کیفیت</span><span>${c.priceSensitivity||'—'}</span></div>
+      <div class="row" style="margin-bottom:6px;"><span style="color:var(--text-dim);">رقیب فعلی</span><span>${c.competitor||'—'}</span></div>
+      <div class="row"><span style="color:var(--text-dim);">امتیاز مشتری</span><span class="chip gold">${c.rating||'—'}</span></div>
+    </div>
+    <div class="section-title"><span>تاریخچه مراجعات</span><span class="line"></span></div>
+    ${(c.visits||[]).slice().reverse().map(v=>`
+      <div class="card tight" style="margin-bottom:8px;">
+        <div class="row"><span style="font-size:12px;color:var(--text-dim);">${v.date}</span>${v.purchased?'<span class="chip green">خرید</span>':'<span class="chip red">بدون خرید</span>'}</div>
+        ${v.purchased ? `<div style="font-size:12.5px;margin-top:6px;">${(v.items||[]).map(it=>`${it.productName} — ${toman(it.weightKg)} کیلو — ${toman(it.totalPrice)} ت`).join('<br/>')}</div>`
+          : `<div style="font-size:12.5px;margin-top:6px;color:var(--red);">علت: ${v.noPurchaseReason||'—'}</div>`}
+        ${v.notes?`<div style="font-size:12px;color:var(--text-dim);margin-top:6px;">یادداشت: ${v.notes}</div>`:''}
+      </div>
+    `).join('') || `<div class="empty">مراجعه‌ای ثبت نشده.</div>`}
+    <button class="btn secondary" id="close-modal" style="margin-top:10px;">بستن</button>
+  </div></div>`);
+  document.body.appendChild(modal);
+  modal.querySelector('#close-modal').onclick = ()=> modal.remove();
+  modal.onclick = (e)=>{ if(e.target===modal) modal.remove(); };
+}
+
+function renderAdminMessages(content){
+  if(!state.messages) state.messages = [];
+  content.innerHTML = `
+    <div class="section-title" style="margin-top:0;"><span>ارسال پیام یا ماموریت جدید</span><span class="line"></span></div>
+    <div class="card">
+      <div class="field">
+        <label>گیرنده</label>
+        <select id="msg-to">
+          <option value="all">همه‌ی بازاریاب‌ها</option>
+          ${marketers().map(m=>`<option value="${m.username}">${m.name}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field">
+        <label>نوع</label>
+        <select id="msg-type">
+          <option value="message">پیام ساده</option>
+          <option value="mission">ماموریت (نیاز به انجام)</option>
+        </select>
+      </div>
+      <div class="field"><label>متن</label><textarea id="msg-text" rows="3" placeholder="مثلاً: امروز حتماً به رستوران کویر هم سر بزن"></textarea></div>
+      <button class="btn" id="msg-send">ارسال</button>
+    </div>
+    <div class="section-title"><span>پیام‌های ارسال‌شده</span><span class="line"></span></div>
+    <div id="msg-list"></div>
+  `;
+  const list = document.getElementById('msg-list');
+  function draw(){
+    const mine = state.messages.slice().reverse();
+    if(mine.length===0){ list.innerHTML = `<div class="empty"><div class="ic">📨</div>هنوز پیامی ارسال نشده.</div>`; return; }
+    list.innerHTML = mine.map(m=>{
+      const toName = m.to==='all' ? 'همه' : ((state.users.find(u=>u.username===m.to)||{}).name || m.to);
+      return `<div class="card tight" style="margin-bottom:8px;">
+        <div class="row"><span class="chip ${m.type==='mission'?'gold':''}">${m.type==='mission'?'🎯 ماموریت':'💬 پیام'}</span><span style="font-size:11px;color:var(--text-dim);">${m.date}</span></div>
+        <div style="margin-top:8px;font-size:13.5px;">${m.text}</div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:6px;">به: ${toName} ${m.doneBy && m.doneBy.length ? '· ✓ انجام‌شده توسط: '+m.doneBy.map(u=>(state.users.find(x=>x.username===u)||{}).name||u).join('، ') : ''}</div>
+      </div>`;
+    }).join('');
+  }
+  draw();
+  document.getElementById('msg-send').onclick = async ()=>{
+    const to = document.getElementById('msg-to').value;
+    const type = document.getElementById('msg-type').value;
+    const text = document.getElementById('msg-text').value.trim();
+    if(!text){ showToast('متن پیام را بنویسید.'); return; }
+    state.messages.push({id:uid(), to, type, text, date:nowFa(), from:state.user.username, doneBy:[]});
+    await saveMessages();
+    document.getElementById('msg-text').value='';
+    showToast('ارسال شد.');
+    draw();
+  };
+}
+
+function renderAdminManage(content){
+  content.innerHTML = `
+    <div class="section-title"><span>بازاریاب‌ها</span><span class="line"></span></div>
+    <div id="marketer-list"></div>
+    <button class="btn secondary" id="add-marketer-btn" style="margin-top:6px;">+ افزودن بازاریاب جدید</button>
+
+    <div class="section-title"><span>حساب کاربری من</span><span class="line"></span></div>
+    <div class="card tight">
+      <div class="row" style="margin-bottom:10px;"><span style="color:var(--text-dim);">نام کاربری</span><span>${state.user.username}</span></div>
+      <button class="btn secondary small" id="logout-btn">خروج از حساب</button>
+    </div>
+  `;
+  const list = document.getElementById('marketer-list');
+  function draw(){
+    if(marketers().length===0){
+      list.innerHTML = `<div class="empty"><div class="ic">👤</div>هنوز بازاریابی اضافه نشده.</div>`;
+      return;
+    }
+    list.innerHTML = marketers().map(m=>`
+      <div class="card tight" style="margin-bottom:10px;">
+        <div class="row"><b>${m.name}</b><span class="badge-role">${m.username}</span></div>
+        <div class="row" style="margin-top:10px;gap:8px;">
+          <button class="btn small secondary" data-act="route" data-u="${m.username}">تنظیم مسیر</button>
+          <button class="btn small secondary" data-act="pass" data-u="${m.username}">تغییر رمز</button>
+          <button class="btn small danger" data-act="del" data-u="${m.username}">حذف</button>
+        </div>
+      </div>
+    `).join('');
+    list.querySelectorAll('button').forEach(b=>{
+      b.onclick = ()=>{
+        const u = b.dataset.u;
+        if(b.dataset.act==='route') openRouteEditor(u);
+        else if(b.dataset.act==='pass') openPasswordEditor(u);
+        else if(b.dataset.act==='del') deleteMarketer(u);
+      };
+    });
+  }
+  draw();
+  document.getElementById('add-marketer-btn').onclick = openAddMarketer;
+  document.getElementById('logout-btn').onclick = doLogout;
+}
+
+function openAddMarketer(){
+  const modal = el(`<div class="modal-bg"><div class="modal">
+    <div class="modal-handle"></div>
+    <h2 style="margin:0 0 16px;font-size:17px;">افزودن بازاریاب جدید</h2>
+    <div class="field"><label>نام و نام‌خانوادگی</label><input id="nm-name" placeholder="مثلاً علی محمدی"/></div>
+    <div class="field"><label>نام کاربری</label><input id="nm-user" placeholder="یک نام کاربری یکتا"/></div>
+    <div class="field"><label>رمز عبور</label><input id="nm-pass" placeholder="رمز عبور اختصاصی"/></div>
+    <button class="btn" id="nm-save">ذخیره</button>
+    <button class="btn secondary" id="nm-cancel" style="margin-top:8px;">انصراف</button>
+  </div></div>`);
+  document.body.appendChild(modal);
+  modal.querySelector('#nm-cancel').onclick = ()=>modal.remove();
+  modal.querySelector('#nm-save').onclick = async ()=>{
+    const name = document.getElementById('nm-name').value.trim();
+    const username = document.getElementById('nm-user').value.trim();
+    const password = document.getElementById('nm-pass').value.trim();
+    if(!name||!username||!password){ showToast('همه فیلدها را پر کنید.'); return; }
+    if(state.users.find(u=>u.username===username)){ showToast('این نام کاربری قبلاً استفاده شده.'); return; }
+    state.users.push({username, password, role:'marketer', name, title:'بازاریاب'});
+    await saveUsers();
+    modal.remove();
+    showToast('بازاریاب اضافه شد.');
+    render();
+  };
+}
+
+function openPasswordEditor(username){
+  const modal = el(`<div class="modal-bg"><div class="modal">
+    <div class="modal-handle"></div>
+    <h2 style="margin:0 0 16px;font-size:17px;">تغییر رمز عبور</h2>
+    <div class="field"><label>رمز جدید</label><input id="np-pass" placeholder="رمز عبور جدید"/></div>
+    <button class="btn" id="np-save">ذخیره</button>
+    <button class="btn secondary" id="np-cancel" style="margin-top:8px;">انصراف</button>
+  </div></div>`);
+  document.body.appendChild(modal);
+  modal.querySelector('#np-cancel').onclick = ()=>modal.remove();
+  modal.querySelector('#np-save').onclick = async ()=>{
+    const p = document.getElementById('np-pass').value.trim();
+    if(!p) return;
+    const u = state.users.find(x=>x.username===username);
+    u.password = p;
+    await saveUsers();
+    modal.remove();
+    showToast('رمز عبور تغییر کرد.');
+  };
+}
+
+async function deleteMarketer(username){
+  if(!confirm('حذف این بازاریاب مطمئن هستید؟')) return;
+  state.users = state.users.filter(u=>u.username!==username);
+  await saveUsers();
+  showToast('بازاریاب حذف شد.');
+  render();
+}
+
+function openRouteEditor(username){
+  const date = todayStr();
+  if(!state.routes[username]) state.routes[username] = {};
+  if(!state.routes[username][date]) state.routes[username][date] = [];
+  const stops = state.routes[username][date];
+
+  const modal = el(`<div class="modal-bg"><div class="modal">
+    <div class="modal-handle"></div>
+    <h2 style="margin:0 0 4px;font-size:17px;">تنظیم مسیر امروز</h2>
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:16px;">${date}</div>
+    <div id="stops-list"></div>
+    <div class="field"><label>عنوان توقف (مثلاً: خیابان امام)</label><input id="stop-title"/></div>
+    <div class="field"><label>یادداشت (اختیاری)</label><input id="stop-note" placeholder="مثلاً از ساعت ۹"/></div>
+    <button class="btn secondary" id="add-stop">+ افزودن توقف</button>
+    <button class="btn" id="route-close" style="margin-top:14px;">تمام و ذخیره</button>
+  </div></div>`);
+  document.body.appendChild(modal);
+
+  function drawStops(){
+    const box = modal.querySelector('#stops-list');
+    if(stops.length===0){ box.innerHTML = `<div class="empty" style="padding:20px;">هنوز توقفی اضافه نشده.</div>`; return; }
+    box.innerHTML = stops.map((s,i)=>`
+      <div class="card tight" style="margin-bottom:8px;">
+        <div class="row"><b>${i+1}. ${s.title}</b><button class="btn small danger" data-i="${i}">حذف</button></div>
+        ${s.note?`<div style="font-size:12px;color:var(--text-dim);margin-top:4px;">${s.note}</div>`:''}
+      </div>`).join('');
+    box.querySelectorAll('button').forEach(b=>{
+      b.onclick = ()=>{ stops.splice(Number(b.dataset.i),1); drawStops(); };
+    });
+  }
+  drawStops();
+
+  modal.querySelector('#add-stop').onclick = ()=>{
+    const title = modal.querySelector('#stop-title').value.trim();
+    const note = modal.querySelector('#stop-note').value.trim();
+    if(!title) return;
+    stops.push({id:uid(), title, note, done:false});
+    modal.querySelector('#stop-title').value='';
+    modal.querySelector('#stop-note').value='';
+    drawStops();
+  };
+  modal.querySelector('#route-close').onclick = async ()=>{
+    await saveRoutes();
+    modal.remove();
+    showToast('مسیر ذخیره شد.');
+  };
+}
+
+// ================= MARKETER =================
+const MARKETER_TABS = [
+  {key:'route', label:'مسیر', icon:'🗺️'},
+  {key:'catalog', label:'کاتالوگ', icon:'🌾'},
+  {key:'newvisit', label:'ثبت مشتری', icon:'📝'},
+  {key:'mycustomers', label:'مشتری‌ها', icon:'📁'},
+  {key:'messages', label:'پیام‌ها', icon:'📨'},
+];
+
+function renderMarketer(){
+  root.innerHTML = `
+    ${headerHtml('کیارایس · ' + state.user.name, 'بازاریاب')}
+    <div id="page-content" style="padding:16px 16px 10px;"></div>
+    <div class="tabbar" id="tabbar"></div>
+    ${toastHtml()}
+  `;
+  const tabbar = document.getElementById('tabbar');
+  tabbar.innerHTML = MARKETER_TABS.map(t=>`
+    <button data-tab="${t.key}" class="${state.marketerTab===t.key?'active':''}">
+      <span style="font-size:18px;">${t.icon}</span>${t.label}
+    </button>`).join('');
+  tabbar.querySelectorAll('button').forEach(b=>{
+    b.onclick = ()=>{ state.marketerTab = b.dataset.tab; render(); };
+  });
+  const content = document.getElementById('page-content');
+  if(state.marketerTab==='route') renderMarketerRoute(content);
+  else if(state.marketerTab==='catalog') renderMarketerCatalog(content);
+  else if(state.marketerTab==='newvisit') renderMarketerNewVisit(content);
+  else if(state.marketerTab==='mycustomers') renderMarketerCustomers(content);
+  else if(state.marketerTab==='messages') renderMarketerMessages(content);
+}
+
+function renderMarketerRoute(content){
+  const date = todayStr();
+  const stops = (state.routes[state.user.username] && state.routes[state.user.username][date]) || [];
+  const s = computeMarketerStats(state.user.username, 'month');
+  const sd = computeMarketerStats(state.user.username, 'day');
+  const commission = computeCommission(s.totalKg, s.totalRevenue);
+
+  content.innerHTML = `
+    <div class="stat-grid" style="margin-bottom:10px;">
+      <div class="stat-box"><div class="num">${toman(sd.totalKg)}</div><div class="label">کیلو فروش امروز</div></div>
+      <div class="stat-box"><div class="num">${toman(sd.totalRevenue)}</div><div class="label">فروش امروز (ت)</div></div>
+    </div>
+    <div class="stat-grid" style="margin-bottom:18px;">
+      <div class="stat-box"><div class="num">${toman(s.totalKg)}</div><div class="label">کیلو فروش این ماه</div></div>
+      <div class="stat-box"><div class="num">${toman(Math.round(commission))}</div><div class="label">پورسانت تخمینی (ت)</div></div>
+    </div>
+    <div class="section-title"><span>مسیر امروز</span><span class="line"></span></div>
+    <div id="route-list"></div>
+    <button class="btn secondary" id="logout-btn-m" style="margin-top:24px;">خروج از حساب</button>
+  `;
+  const rl = document.getElementById('route-list');
+  if(stops.length===0){
+    rl.innerHTML = `<div class="empty"><div class="ic">🗺️</div>مدیر هنوز مسیری برای امروز تعریف نکرده.</div>`;
+  } else {
+    rl.innerHTML = stops.map((s,i)=>`
+      <div class="route-stop">
+        <div class="timeline">
+          <div class="dot ${s.done?'done':''}"></div>
+          ${i<stops.length-1?'<div class="bar"></div>':''}
+        </div>
+        <div class="content">
+          <div class="card tight">
+            <div class="row"><b>${s.title}</b>
+              <button class="btn small ${s.done?'secondary':''}" data-i="${i}">${s.done?'✓ انجام شد':'علامت‌گذاری'}</button>
+            </div>
+            ${s.note?`<div style="font-size:12px;color:var(--text-dim);margin-top:6px;">${s.note}</div>`:''}
+          </div>
+        </div>
+      </div>
+    `).join('');
+    rl.querySelectorAll('button').forEach(b=>{
+      b.onclick = async ()=>{
+        stops[Number(b.dataset.i)].done = !stops[Number(b.dataset.i)].done;
+        await saveRoutes();
+        renderMarketerRoute(content);
+      };
+    });
+  }
+  document.getElementById('logout-btn-m').onclick = doLogout;
+}
+
+function starsHtml(val, max){
+  max = max||5;
+  let s = '';
+  for(let i=0;i<max;i++) s += i<val ? '●' : '<span class="off">○</span>';
+  return `<span class="dots">${s}</span>`;
+}
+
+function productCardHtml(p){
+  return `
+  <div class="product-card">
+    ${p.img?`<img src="${p.img}"/>`:`<div class="noimg">🌾 عکس در انتظار دریافت</div>`}
+    <div class="body">
+      <div class="row"><span class="name">${p.flag} ${p.name}</span></div>
+      <div class="origin">${p.variety}</div>
+      <div class="price-box">
+        <div class="p"><div class="v">${toman(p.basePrice)}</div><div class="l">قیمت پایه</div></div>
+        <div class="p coop"><div class="v">✦ ${toman(p.coopPrice)}</div><div class="l">نرخ همکاری</div></div>
+      </div>
+      <table class="spec-table">
+        <tr><td>اندازه دانه خام</td><td>${p.rawSize} mm</td></tr>
+        <tr><td>اندازه بعد از پخت</td><td>${p.cookedSize} mm</td></tr>
+        <tr><td>چسبندگی</td><td>${starsHtml(p.stick)}</td></tr>
+        <tr><td>ری (باز شدن دانه)</td><td>${starsHtml(p.open)}</td></tr>
+        <tr><td>عطر</td><td>${starsHtml(p.aroma)}</td></tr>
+        <tr><td>نوع پخت مناسب</td><td>${p.cookType}</td></tr>
+        <tr><td>کاربرد</td><td>${p.usage}</td></tr>
+      </table>
+      ${p.pitch?`<div class="pitch">💬 ${p.pitch}</div>`:''}
+    </div>
+  </div>`;
+}
+
+function renderMarketerCatalog(content){
+  const countries = ['iran','pakistan','india','thailand'];
+  content.innerHTML = `
+    <div class="tab-switch-row" id="country-tabs">
+      ${countries.map(c=>`<button data-c="${c}" class="${c==='iran'?'active':''}">${COUNTRY_LABEL[c]}</button>`).join('')}
+    </div>
+    <div id="catalog-list"></div>
+  `;
+  const list = document.getElementById('catalog-list');
+  function draw(country){
+    const items = state.products.filter(p=>p.country===country);
+    let extra = '';
+    if(country==='india') extra = `<div class="pitch" style="margin-bottom:14px;">💬 ${GENERAL_PITCH.compare_india_pak}</div>`;
+    list.innerHTML = extra + items.map(productCardHtml).join('');
+  }
+  draw('iran');
+  document.getElementById('country-tabs').querySelectorAll('button').forEach(b=>{
+    b.onclick = ()=>{
+      document.querySelectorAll('#country-tabs button').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      draw(b.dataset.c);
+    };
+  });
+}
+
+function resizeImageFile(file, maxDim){
+  return new Promise((resolve)=>{
+    const reader = new FileReader();
+    reader.onload = (e)=>{
+      const img = new Image();
+      img.onload = ()=>{
+        let w = img.width, h = img.height;
+        if(w>h && w>maxDim){ h = h*(maxDim/w); w = maxDim; }
+        else if(h>maxDim){ w = w*(maxDim/h); h = maxDim; }
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img,0,0,w,h);
+        resolve(canvas.toDataURL('image/jpeg', 0.7));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+let newVisitDraft = { purchased: null, items: [], rating: 'B' };
+
+function renderMarketerNewVisit(content){
+  content.innerHTML = `
+    <div class="section-title"><span>مشتری جدید یا مراجعه جدید</span><span class="line"></span></div>
+
+    <div class="card">
+      <div class="field"><label>نام فروشگاه / رستوران *</label><input id="v-shop" placeholder="مثلاً رستوران کویر"/></div>
+      <div class="field"><label>نام مالک / مسئول خرید</label><input id="v-owner" placeholder="نام و نام‌خانوادگی"/></div>
+      <div class="field"><label>شماره تماس</label><input id="v-phone" type="tel" placeholder="09xxxxxxxxx"/></div>
+      <div class="field"><label>شهر</label><input id="v-city" placeholder="مثلاً اراک"/></div>
+      <div class="field"><label>آدرس دقیق</label><textarea id="v-address" rows="2" placeholder="جاده میقان، بالاتر از رستوران کویر..."></textarea></div>
+      <div class="field">
+        <label>عکس فروشگاه (اختیاری)</label>
+        <input id="v-photo" type="file" accept="image/*" capture="environment"/>
+      </div>
+    </div>
+
+    <div class="section-title"><span>وضعیت خرید</span><span class="line"></span></div>
+    <div class="pill-toggle" id="purchase-toggle">
+      <button data-v="yes">✅ خرید کرد</button>
+      <button data-v="no">❌ خرید نکرد</button>
+    </div>
+
+    <div id="purchase-section" style="margin-top:14px;"></div>
+
+    <div class="section-title"><span>اطلاعات تکمیلی</span><span class="line"></span></div>
+    <div class="card">
+      <div class="field"><label>حساسیت روی قیمت یا کیفیت</label>
+        <select id="v-sensitivity">
+          <option value="">انتخاب کنید</option>
+          <option value="قیمت">حساس به قیمت</option>
+          <option value="کیفیت">حساس به کیفیت</option>
+          <option value="هردو">هردو</option>
+          <option value="بی‌تفاوت">بی‌تفاوت</option>
+        </select>
+      </div>
+      <div class="field"><label>رقیبی که از او خرید می‌کند (در صورت وجود)</label><input id="v-competitor" placeholder="نام یا برند رقیب"/></div>
+      <div class="field"><label>روز مناسب مراجعه بعدی</label><input id="v-next" type="date"/></div>
+      <div class="field"><label>یادداشت / نکات مذاکره</label><textarea id="v-notes" rows="2"></textarea></div>
+      <div class="field">
+        <label>امتیاز مشتری</label>
+        <div class="rate-abc" id="rate-abc">
+          <button data-v="A">A · عالی</button>
+          <button data-v="B" class="active">B · متوسط</button>
+          <button data-v="C" class="active-c">C · ضعیف</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn" id="save-visit" style="margin-top:6px;">ثبت مراجعه</button>
+  `;
+
+  newVisitDraft = { purchased: null, items: [], rating:'B', photo:null };
+
+  document.getElementById('v-photo').addEventListener('change', async (e)=>{
+    if(e.target.files[0]){
+      newVisitDraft.photo = await resizeImageFile(e.target.files[0], 700);
+      showToast('عکس آماده شد.');
+    }
+  });
+
+  const toggle = document.getElementById('purchase-toggle');
+  const purchaseSection = document.getElementById('purchase-section');
+  toggle.querySelectorAll('button').forEach(b=>{
+    b.onclick = ()=>{
+      toggle.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      newVisitDraft.purchased = b.dataset.v==='yes';
+      drawPurchaseSection();
+    };
+  });
+
+  function drawPurchaseSection(){
+    if(newVisitDraft.purchased===true){
+      purchaseSection.innerHTML = `
+        <div class="card">
+          <div id="items-list"></div>
+          <div class="row gap">
+            <select id="item-product" style="flex:2;">
+              <option value="">انتخاب برنج</option>
+              ${state.products.map(p=>`<option value="${p.id}">${p.flag} ${p.name}</option>`).join('')}
+            </select>
+            <input id="item-weight" type="number" placeholder="کیلوگرم" style="flex:1;"/>
+          </div>
+          <button class="btn secondary small" id="add-item" style="margin-top:10px;">+ افزودن قلم</button>
+          <div class="field" style="margin-top:14px;"><label>زمان ارسال بار (تاریخ)</label><input id="v-delivery-date" type="date"/></div>
+          <div class="field"><label>ساعت دریافت</label><input id="v-delivery-time" type="time"/></div>
+        </div>`;
+      const itemsList = document.getElementById('items-list');
+      function drawItems(){
+        if(newVisitDraft.items.length===0){ itemsList.innerHTML = `<div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;">هنوز قلمی اضافه نشده.</div>`; return; }
+        itemsList.innerHTML = newVisitDraft.items.map((it,i)=>`
+          <div class="row" style="margin-bottom:8px;font-size:13px;">
+            <span>${it.productName} — ${it.weightKg} کیلو (${toman(it.totalPrice)} ت)</span>
+            <button class="btn small danger" data-i="${i}">حذف</button>
+          </div>`).join('');
+        itemsList.querySelectorAll('button').forEach(b=>{
+          b.onclick = ()=>{ newVisitDraft.items.splice(Number(b.dataset.i),1); drawItems(); };
+        });
+      }
+      drawItems();
+      document.getElementById('add-item').onclick = ()=>{
+        const pid = document.getElementById('item-product').value;
+        const w = Number(document.getElementById('item-weight').value);
+        if(!pid || !w){ showToast('برنج و وزن را مشخص کنید.'); return; }
+        const p = state.products.find(x=>x.id===pid);
+        const totalPrice = Math.round((p.basePrice||0)*w);
+        newVisitDraft.items.push({productId:pid, productName:p.name, weightKg:w, pricePerKg:p.basePrice, totalPrice});
+        document.getElementById('item-weight').value='';
+        drawItems();
+      };
+    } else if(newVisitDraft.purchased===false){
+      purchaseSection.innerHTML = `
+        <div class="card">
+          <div class="field"><label>علت خرید نکردن *</label>
+            <select id="v-reason">
+              <option value="">انتخاب کنید</option>
+              <option value="قیمت بالاست">قیمت بالاست</option>
+              <option value="مراجعه کم">مراجعه کم</option>
+              <option value="موجودی کافی دارد">موجودی کافی دارد</option>
+              <option value="بسته بود">بسته بود</option>
+              <option value="مسئول خرید نبود">مسئول خرید نبود</option>
+              <option value="سایر">سایر (در یادداشت بنویسید)</option>
+            </select>
+          </div>
+        </div>`;
+    } else {
+      purchaseSection.innerHTML = '';
+    }
+  }
+
+  const rateBox = document.getElementById('rate-abc');
+  rateBox.querySelectorAll('button').forEach(b=>{
+    b.onclick = ()=>{
+      rateBox.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      newVisitDraft.rating = b.dataset.v;
+    };
+  });
+
+  document.getElementById('save-visit').onclick = async ()=>{
+    const shopName = document.getElementById('v-shop').value.trim();
+    if(!shopName){ showToast('نام فروشگاه الزامی است.'); return; }
+    if(newVisitDraft.purchased===null){ showToast('وضعیت خرید را مشخص کنید.'); return; }
+    if(newVisitDraft.purchased===false){
+      const reason = document.getElementById('v-reason').value;
+      if(!reason){ showToast('علت خرید نکردن را انتخاب کنید.'); return; }
+      newVisitDraft.noPurchaseReason = reason;
+    }
+    if(newVisitDraft.purchased===true && newVisitDraft.items.length===0){
+      showToast('حداقل یک قلم خرید اضافه کنید.'); return;
+    }
+
+    let customer = state.customers.find(c=> c.shopName===shopName && c.createdBy===state.user.username);
+    if(!customer){
+      customer = {
+        id: uid(),
+        shopName,
+        ownerName: document.getElementById('v-owner').value.trim(),
+        phone: document.getElementById('v-phone').value.trim(),
+        city: document.getElementById('v-city').value.trim(),
+        address: document.getElementById('v-address').value.trim(),
+        shopPhoto: newVisitDraft.photo || null,
+        createdBy: state.user.username,
+        visits: []
+      };
+      state.customers.push(customer);
+    } else {
+      if(newVisitDraft.photo) customer.shopPhoto = newVisitDraft.photo;
+      customer.ownerName = document.getElementById('v-owner').value.trim() || customer.ownerName;
+      customer.phone = document.getElementById('v-phone').value.trim() || customer.phone;
+      customer.city = document.getElementById('v-city').value.trim() || customer.city;
+      customer.address = document.getElementById('v-address').value.trim() || customer.address;
+    }
+    customer.priceSensitivity = document.getElementById('v-sensitivity').value || customer.priceSensitivity;
+    customer.competitor = document.getElementById('v-competitor').value.trim() || customer.competitor;
+    customer.rating = newVisitDraft.rating;
+
+    const visit = {
+      id: uid(),
+      date: todayStr(),
+      marketer: state.user.username,
+      purchased: newVisitDraft.purchased,
+      items: newVisitDraft.purchased ? newVisitDraft.items : [],
+      noPurchaseReason: newVisitDraft.purchased ? null : newVisitDraft.noPurchaseReason,
+      deliveryDate: document.getElementById('v-delivery-date') ? document.getElementById('v-delivery-date').value : null,
+      deliveryTime: document.getElementById('v-delivery-time') ? document.getElementById('v-delivery-time').value : null,
+      nextVisit: document.getElementById('v-next').value,
+      notes: document.getElementById('v-notes').value.trim()
+    };
+    customer.visits.push(visit);
+    customer.nextVisitReminder = visit.nextVisit;
+
+    await saveCustomers();
+    showToast('مراجعه با موفقیت ثبت شد.');
+    state.marketerTab = 'mycustomers';
+    render();
+  };
+
+  drawPurchaseSection();
+}
+
+function renderMarketerCustomers(content){
+  const mine = state.customers.filter(c=>c.createdBy===state.user.username);
+  content.innerHTML = `
+    <div class="field"><input id="mc-search" placeholder="جستجو..."/></div>
+    <div id="mc-list"></div>
+  `;
+  const list = document.getElementById('mc-list');
+  function draw(){
+    const q = document.getElementById('mc-search').value.trim();
+    const items = mine.filter(c=> !q || (c.shopName+c.city).includes(q));
+    if(items.length===0){ list.innerHTML = `<div class="empty"><div class="ic">📁</div>هنوز مشتری‌ای ثبت نکردید.</div>`; return; }
+    list.innerHTML = items.slice().reverse().map(c=>`
+      <div class="card tight" style="margin-bottom:10px;">
+        <div class="row"><b>${c.shopName}</b><span class="chip gold">${c.rating||'—'}</span></div>
+        <div style="font-size:12px;color:var(--text-dim);margin-top:6px;">${c.city||''} · ${(c.visits||[]).length} مراجعه</div>
+        ${c.nextVisitReminder?`<div style="font-size:12px;color:var(--gold-bright);margin-top:4px;">🔔 مراجعه بعدی: ${c.nextVisitReminder}</div>`:''}
+      </div>
+    `).join('');
+  }
+  document.getElementById('mc-search').addEventListener('input', draw);
+  draw();
+}
+
+function renderMarketerMessages(content){
+  if(!state.messages) state.messages = [];
+  const mine = state.messages.filter(m=>m.to==='all' || m.to===state.user.username).slice().reverse();
+  content.innerHTML = `
+    <div class="section-title" style="margin-top:0;"><span>پیام‌ها و ماموریت‌های مدیر</span><span class="line"></span></div>
+    <div id="msg-list"></div>
+  `;
+  const list = document.getElementById('msg-list');
+  function draw(){
+    if(mine.length===0){ list.innerHTML = `<div class="empty"><div class="ic">📨</div>هنوز پیامی برای شما ارسال نشده.</div>`; return; }
+    list.innerHTML = mine.map(m=>{
+      const done = (m.doneBy||[]).includes(state.user.username);
+      return `<div class="card tight" style="margin-bottom:10px;">
+        <div class="row"><span class="chip ${m.type==='mission'?'gold':''}">${m.type==='mission'?'🎯 ماموریت':'💬 پیام'}</span><span style="font-size:11px;color:var(--text-dim);">${m.date}</span></div>
+        <div style="margin-top:8px;font-size:13.5px;">${m.text}</div>
+        ${m.type==='mission' ? `<button class="btn small ${done?'secondary':''}" data-id="${m.id}" style="margin-top:10px;">${done?'✓ انجام شد':'علامت به‌عنوان انجام‌شده'}</button>` : ''}
+      </div>`;
+    }).join('');
+    list.querySelectorAll('button').forEach(b=>{
+      b.onclick = async ()=>{
+        const msg = state.messages.find(x=>x.id===b.dataset.id);
+        if(!msg.doneBy) msg.doneBy = [];
+        const i = msg.doneBy.indexOf(state.user.username);
+        if(i===-1) msg.doneBy.push(state.user.username); else msg.doneBy.splice(i,1);
+        await saveMessages();
+        draw();
+      };
+    });
+  }
+  draw();
+}
+
+// ================= INIT =================
+async function init(){
+  root.innerHTML = `<div class="center-loading">
+    <img src="${LOGO_SRC}" style="width:90px;opacity:0.9;"/>
+    <div class="spinner light" style="width:26px;height:26px;"></div>
+  </div>`;
+  await loadAll();
+  render();
+}
+init();
+</script>
+</body>
+</html>
